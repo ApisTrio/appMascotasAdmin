@@ -1,0 +1,462 @@
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <base href="/appMascotas/">
+
+
+    <title>Dinbeat - Los mejores productos tecnológicos para mascotas</title>
+    <link rel="shortcut icon" href="https://www.dinbeat.com/wp-content/uploads/2016/06/favicon-dinbeat.png">
+
+    <link rel="stylesheet" type="text/css" href="modulos/angular-ui-switch/angular-ui-switch.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="modulos/angular-material/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+
+    <!--JQUERY-->
+    <script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
+
+    <!--MATERIALIZE-->
+
+    <script src="assets/js/materialize.min.js"></script>
+
+    <!-- MAPS -->
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyD3rv58fVm8h5McUzT9wrG6J7lQFw_J7Uk"></script>
+
+    <!--Librerias core de angualarJS -->
+    <script src="modulos/angular/angular.min.js"></script>
+    <script src="modulos/angular-messages/angular-messages.min.js"></script>
+    <script src="modulos/angular-animate/angular-animate.min.js"></script>
+    <script src="modulos/angular-aria/angular-aria.min.js"></script>
+    <script src="modulos/angular-aria/angular-aria.min.js"></script>
+    
+    <!--Librerias 3r party angularJS -->
+    <script src="modulos/angular-ui-switch/angular-ui-switch.js"></script>
+    <script src="modulos/angular-google-maps/build/scripts/ng-map.min.js"></script>
+    <script src="modulos/angular-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="modulos/angular-file-upload/ng-file-upload.min.js"></script>
+    <script src="modulos/angular-ismobile/dist/angular-ismobile.min.js"></script>
+    <script src="modulos/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="modulos/angular-material/angular-material.min.js"></script>
+    <script src="modulos/angular-materialize/angular-materialize.min.js"></script>
+    
+
+
+    <!--Archivos App -->
+    <script src="app/app.js"></script>
+    <script src="app/services.js"></script>
+    <script src="app/directives.js"></script>
+
+
+    <!-- Controladores -->
+    <script src="app/controllers/activarAlerta.js"></script>
+    <script src="app/controllers/desactivarAlerta.js"></script>
+    <script src="app/controllers/header.js"></script>
+    <script src="app/controllers/admin.js"></script>
+    <script src="app/controllers/landing.js"></script>
+    <script src="app/controllers/mascotaPerdida.js"></script>
+    <script src="app/controllers/mascotasPerdidas.js"></script>
+    <script src="app/controllers/mascotasPerdidasIndividual.js"></script>
+    <script src="app/controllers/misMascotas.js"></script>
+    <script src="app/controllers/misMascotasIndividual.js"></script>
+    <script src="app/controllers/misMascotasEditar.js"></script>
+    <script src="app/controllers/misMascotasPlaca.js"></script>
+    <script src="app/controllers/misMascotasNueva.js"></script>
+    <script src="app/controllers/misMascotasEliminar.js"></script>
+    <script src="app/controllers/perfil.js"></script>
+    <script src="app/controllers/miPerfil.js"></script>
+    <script src="app/controllers/placa.js"></script>
+    <script src="app/controllers/login.js"></script>
+    <script src="app/controllers/loginAdmin.js"></script>
+    <script src="app/controllers/registro.js"></script>
+    <script src="app/controllers/confirmar.js"></script>
+    <script src="app/controllers/cambiarContrasena.js"></script>
+    <script src="app/controllers/recordarUsuario.js"></script>
+    <script src="app/controllers/eliminarCuenta.js"></script>
+    <script src="app/controllers/eliminarCuentaPublico.js"></script>
+</head>
+
+<body ng-app="mascotas">
+
+    <div ng-controller="headerController as header">
+
+        <header >
+            <div class="contenedor-logo col s6 m3">
+                <div>
+                    <a href="http://www.dinbeat.com/">
+                        <img src="assets/images/logo/logo_dinbeat.svg">
+                    </a>
+                </div>
+            </div><!--
+
+
+         --><div class="contenedor-navbar col s6 m9" ng-mouseleave="header.hmenuMostrar=false" show-gt-sm>
+
+                <div>
+                    <a href="http://www.dinbeat.com/proyecto-wearable/">Proyecto</a>
+                    <a ui-sref="landing">Placas QR</a>
+                    <a href="/tienda">Tienda</a>
+                    <a href="http://www.dinbeat.com/sobre-nosotros/">Sobre nosotros</a>
+                    <a href="http://www.dinbeat.com/blog/">Blog</a>
+
+                    <div ng-switch="header.autorizado" class="login-contenedor">
+                        <a ng-switch-when="false" ng-click="header.menuMostrar()" class="c2 nombre-usuario" ui-sref="login">Iniciar Sesión</a>
+
+                        <a ng-mouseenter="header.hmenuMostrar=true" class="c2 nombre-usuario" ui-sref="perfil.miPerfil" ng-switch-default>{{header.autorizado.usuario.usuario}}
+                        </a>
+                        <div ng-switch-default ng-show="header.hmenuMostrar" class="cerrar-sesion c2 nombre-usuario" ng-click="header.salir()">
+                            Cerrar sesion
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div><!--
+
+         --><div class="contenedor-navbar-mobile" hide-gt-sm>
+                <label ng-click="header.toggleLeft()" class="burguer-menu">
+                    <img src="assets/images/icons/burguer-menu.png">
+                </label>
+            </div>
+        </header>
+
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+
+            <md-content layout-padding>
+                <ul class="contenedor-navbar-mobile-list">
+
+                    <li>
+                        <a href="http://www.dinbeat.com/proyecto-wearable/" ng-click="header.close()">Proyecto</a>
+                    </li>
+                    <li>
+                        <a ui-sref="landing" ng-click="header.close()">Placas QR</a>
+                    </li>
+                    <li>
+                        <a href="/tienda" ng-click="header.close()">Tienda</a>
+                    </li>
+                    <li>
+                        <a href="http://www.dinbeat.com/sobre-nosotros/" ng-click="header.close()">Sobre nosotros</a>
+                    </li>
+                    <li>
+                        <a href="http://www.dinbeat.com/blog/" ng-click="header.close()">Blog</a>
+                    </li>
+                    <li ng-click="header.close()">
+                        <a ng-if="!header.autorizado" ng-click="header.menuMostrar()" class="c2 nombre-usuario" ui-sref="login">Iniciar Sesión</a>
+
+                        <a ng-if="header.autorizado" class="c2 nombre-usuario" ui-sref="perfil.miPerfil">{{header.autorizado.usuario.usuario}}
+                            </a>
+
+                    </li>
+                    <li ng-if="header.autorizado" ng-click="header.close()">
+                        <a href="#" ng-click="header.salir()">
+                            Cerrar sesion</a>
+                    </li>
+                </ul>
+
+            </md-content>
+        </md-sidenav>
+
+    </div>
+
+
+    <div class="fondo-blanco" ui-view style="min-height: calc(100% - 360px)">
+
+    </div>
+    <footer id="main-footer">
+                    
+        <div class="container">
+            <div id="footer-widgets" class="clearfix">
+                <div class="footer-widget">
+                    <div id="advwidget-2" class="fwidget et_pb_widget widget_advwidget">
+                        <h4 class="title"> </h4>
+                    <div class="adwrap">
+                    <a href="">
+                        <img src="https://www.dinbeat.com/wp-content/uploads/2017/04/endeca-104x85.png" alt="advertisement" title="advertisement">
+                    </a>
+                </div> <!-- end adwrap -->
+            </div> <!-- end .fwidget -->
+        </div> <!-- end .footer-widget -->
+        <div class="footer-widget">
+            <div id="nav_menu-3" class="fwidget et_pb_widget widget_nav_menu">
+                <h4 class="title">Legal</h4>
+                <div class="menu-legal-container">
+                    <ul id="menu-legal" class="menu">
+                        <li id="menu-item-32660" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32660">
+                            <a href="https://www.dinbeat.com/aviso-legal/">Aviso legal</a>
+                        </li>
+                        <li id="menu-item-32662" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32662">
+                            <a href="https://www.dinbeat.com/politica-de-privacidad/">Política de privacidad</a>
+                        </li>
+                        <li id="menu-item-32686" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32686">
+                            <a href="https://www.dinbeat.com/politica-de-compra/">Política de compra</a>
+                        </li>
+                        <li id="menu-item-32661" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32661">
+                            <a href="https://www.dinbeat.com/politica-de-cookies/">Política de cookies</a>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- end .fwidget -->
+        </div> <!-- end .footer-widget -->
+        <div class="footer-widget">
+            <div id="nav_menu-2" class="fwidget et_pb_widget widget_nav_menu">
+                <h4 class="title">Conócenos</h4>
+                <div class="menu-footer-container">
+                    <ul id="menu-footer" class="menu">
+                        <li id="menu-item-32687" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32687"><a href="https://www.dinbeat.com/sobre-nosotros/">Nuestra historia</a></li>
+                        <li id="menu-item-32650" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32650"><a href="https://www.dinbeat.com/sobre-nosotros/equipo/">Equipo</a></li>
+                        <li id="menu-item-32649" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32649"><a href="https://www.dinbeat.com/contacto/">Contacto</a></li>
+                        <li id="menu-item-32544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32544"><a href="https://www.dinbeat.com/trabaja-con-nosotros/">Trabaja con nosotros</a></li>
+                    </ul>
+                </div>
+            </div> <!-- end .fwidget -->
+        </div> <!-- end .footer-widget -->
+        <div class="footer-widget last">
+            <div id="text-5" class="fwidget et_pb_widget widget_text">
+                <h4 class="title">Síguenos</h4>          
+                <div class="textwidget">
+                    <ul class="et_pb_social_media_follow et_pb_module et_pb_bg_layout_dark  et_pb_social_media_follow_0 clearfix">
+            
+                        <li class="et_pb_social_icon et_pb_social_network_link et-social-facebook et_pb_social_media_follow_network_0">
+                            <a href="https://www.facebook.com/dinbeatofficial/" class="icon circle" title="Facebook" target="_blank"><img width="28" src="assets/images/fb.png"></a>
+                        </li>
+                        <li class="et_pb_social_icon et_pb_social_network_link et-social-twitter et_pb_social_media_follow_network_1">
+                            <a href="https://twitter.com/dinbeatofficial" class="icon circle" title="Twitter" target="_blank"><img width="28"  src="assets/images/tw.png"></a>     
+                        </li>
+                        <li class="et_pb_social_icon et_pb_social_network_link et-social-instagram et_pb_social_media_follow_network_2">
+                            <a href="https://www.instagram.com/dinbeatofficial/" class="icon circle" title="Instagram" target="_blank"><img width="28"  src="assets/images/ig.svg"></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div> <!-- end .fwidget --></div> <!-- end .footer-widget -->  </div> <!-- #footer-widgets -->
+        </div>  <!-- .container -->
+
+            
+        <div id="footer-bottom">
+            <div class="container clearfix">
+                <div id="footer-info">Copyright © 2016 Dindog Tech SL. Todos los derechos reservados.</div>                 
+            </div>  <!-- .container -->
+        </div>
+    </footer>
+
+    <!---- Directiva de pasos ---->
+    <script type="text/ng-template" id="cdx.pasos.html">
+        <div class="datos">
+            <div>
+                <div ng-class="{activo: pasos[1]}">1</div>
+                <div>Tus datos</div>
+            </div>
+            <div>
+                <div ng-class="{activo: pasos[2]}">2</div>
+                <div>Tu mascota</div>
+            </div>
+            <div>
+                <div ng-class="{activo: pasos[3]}">3</div>
+                <div>Tu placa QR</div>
+            </div>
+            <div>
+                <div ng-class="{activo: pasos[4]}">4</div>
+                <div>Información de contacto</div>
+            </div>
+            <div>
+                <div ng-class="{activo: pasos[5]}">5</div>
+                <div>¡Listo!</div>
+            </div>
+        </div>
+        <div class="barra">
+            <div>
+                <div ng-class="{activo: pasos[2]}"></div>
+            </div>
+            <div>
+                <div ng-class="{activo: pasos[3]}"></div>
+            </div>
+            <div>
+                <div ng-class="{activo: pasos[4]}"></div>
+            </div>
+            <div>
+                <div ng-class="{activo: pasos[5]}"></div>
+            </div>
+        </div>
+    </script>
+
+    <!-- directiva de formas -->
+    <script type="text/ng-template" id="cdx.formas.html">
+
+        <div ng-repeat="forma in formas">
+            <img ng-src="{{forma.url.visible}}" ng-click="seleccionar($index)">
+        </div>
+
+    </script>
+
+
+    <!-- directiva de modelos -->
+    <script type="text/ng-template" id="cdx.modelos.html">
+
+        <div ng-init="cdx.salto = 0" class="col s12">
+            <img src="assets/images/forms/left.png" ng-click="avanzar(cdx.salto,false, modelos[seleccionado].length, (modelos[seleccionado] | limitTo: limite() : cdx.salto - 1).length, limite())" ng-class="{'escondidoQUITARMAY': !((modelos[seleccionado] | limitTo: limite() : cdx.salto  - 1).length == limite())}">
+
+            <div class="contenedor-modelos">
+                <div ng-repeat="modelo in modelos[seleccionado] | limitTo: limite() : cdx.salto" ng-click="seleccionar($index + cdx.salto, seleccionado)">
+                    <label for="{{modelo.idModelo}}">
+                        <img ng-src="assets/images/placas/{{seleccionado}}/{{modelo.modelo}}" ng-class="{'activo': modelo.activo}">
+                        <input ng-model="$parent.valorCorbata" type="radio" id="{{modelo.idModelo}}" name="placa" ng-value="modelo.idModelo" ng-change="actualizar()">
+                    </label>
+                </div>
+            </div>
+
+            <img src="assets/images/forms/right.png" ng-click="avanzar(cdx.salto,true, modelos[seleccionado].length, (modelos[seleccionado] | limitTo: limite() : cdx.salto  + 1).length, limite())" ng-class="{'escondidoQUITARMAY': !((modelos[seleccionado] | limitTo: limite() : cdx.salto  + 1).length == limite())}">
+        </div>
+
+<div>{{hola}}</div>
+
+    </script>
+
+    <!-- directiva de modal para buscar placas -->
+    <script type="text/ng-template" id="cdx.encontreMascotaModal.html">
+        <div class="row margin-bottom-40 margin-top-40 margin-left-40 margin-right-40">
+            <div class="col s12 center-align">
+                <h4 class="titulo2 negrita interlineado20 c2">¿Has encontrado una mascota?</h4>
+                <div class="center-align">Por favor introduce el ID de su placa</div>
+                <div class="margin-bottom-30">
+                    <div class="input-formulario">
+                        <input ng-model="idPlaca" placeholder="ID de la placa" type="text" />
+                    </div>
+                </div>
+                <button class="boton-verde" ui-sref="placa({idPlaca: idPlaca})" ng-click="cerrarModal()">ENCONTRAR DUEÑO</button>
+            </div>
+        </div>
+    </script>
+
+
+    <!-- directiva de modal para buscar placas -->
+    <script type="text/ng-template" id="cdx.borrarPlaca.html">
+        <div class="row margin-in">
+            <div class="col s12 center-align">
+
+                <h4 class="titulo2 negrita interlineado20 c2">¿Deseas eliminar esta placa?</h4>
+                <div class="row">
+                    <div class="col s12 center-align"> <img class="placas-borrar-imagen" ng-src="assets/images/placas/{{placa.forma}}/{{placa.modelo}}"> {{placa.codigo}}</div>
+                </div>
+                <div class="row">
+                    <div class="col s12 caja-modal"> Estás apunto de eliminar la placa {{placa.codigo}} esta acción es irreversible, si quieres continuar escribe en la caja de texto la palabra ELIMINAR y acepta.
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col s12">
+                        <div class="input-formulario">
+                            <input ng-model="eliminar" placeholder="ELIMINAR" type="text">
+                        </div>
+                    </div>
+                </div>
+                <button class="boton-verde landing" ng-click="borrarPlaca(eliminar, placa.idPlaca)">ACEPTAR</button>
+            </div>
+        </div>
+    </script>
+
+
+    <!-- directiva de previsualizar foto de mascota-->
+    <script type="text/ng-template" id="cdx.previsualizarMascota.html">
+        <div class="row margin-in">
+            <div class="col s12 center-align">
+                <img ngf-src="imagen" class="circle margin-top-30" style="height: 200px; width:200px;">
+            </div>
+        </div>
+    </script>
+
+
+    <!-- directiva de formulario de placa escaneada -->
+    <script type="text/ng-template" id="cdx.correoPlaca.html">
+        <div class="margin-left-40 margin-right-40 formulario-contacto" ng-form="contactoForm">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h4 class="titulo2 negrita c2" style="line-height: 28px">Completa este formulario</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 ">
+                    <div class="campo-formulario">Nombre *</div>
+                    <div class="input-formulario">
+                        <input ng-model="nombre" placeholder="Nombre" name="nombre" type="text" style="width: 100%" required>
+                        <div ng-messages="contactoForm.nombre.$error" ng-show="contactoForm.nombre.$dirty || contactoForm.$submitted">
+                            <div ng-message="required">Este campo es requerido.</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 ">
+                    <div class="campo-formulario">E-mail *</div>
+                    <div class="input-formulario">
+                        <input ng-model="correo" placeholder="E-mail" name="correo" type="email" style="width: 100%" required>
+                        <div ng-messages="contactoForm.correo.$error" ng-show="contactoForm.correo.$dirty || contactoForm.$submitted">
+                            <div ng-message="required">Este campo es requerido.</div>
+                            <div ng-message="email">Debe ser un email válido.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 ">
+                    <div class="campo-formulario">Teléfono *</div>
+                    <div class="input-formulario">
+                        <input ng-model="telefono" placeholder="Teléfono" name="telefono" type="text" style="width: 100%"  ng-pattern="/^[0-9]*$/" required>
+                        <div ng-messages="contactoForm.telefono.$error" ng-show="contactoForm.telefono.$dirty || contactoForm.$submitted">
+                            <div ng-message="required">Este campo es requerido.</div>
+                            <div ng-message="pattern">Solo se aceptan digitos.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 ">
+                    <div class="campo-formulario">Mensaje *</div>
+                    <div class="input-formulario">
+                        <textarea ng-model="mensaje" placeholder="Mensaje" rows="3"  style="width: 100%" required></textarea>
+                        <div ng-messages="contactoForm.telefono.$error" ng-show="contactoForm.telefono.$dirty || contactoForm.$submitted">
+                            <div ng-message="required">Este campo es requerido.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button class="boton-verde" ng-click="enviar(contactoForm.$valid, idMascota, nombre, correo, telefono, mensaje)" type="submit">ENVIAR</button>
+                </div>
+        
+            </div>
+        </div>
+    </script>
+
+
+    <!-- directiva para fallo de login -->
+    <script type="text/ng-template" id="cdx.falloLogin.html">
+        <div class="row margin-bottom-40 margin-top-40 margin-left-40 margin-right-40">
+            <div class="col s12 center-align">
+                <img src="assets/images/icons/alerta.png" style="height: 40px; width:40px">
+                <h4 class="titulo2 negrita c2" style="line-height: 28px">{{titulo}}</h4>
+                <div class="center-align">{{mensaje}}</div>
+            </div>
+        </div>
+    </script>
+    
+    <script type="text/ng-template" id="cdx.errorFotoCargar.html">
+        <div class="row margin-bottom-40 margin-top-40 margin-left-40 margin-right-40">
+            <div class="col s12 center-align">
+                <img src="assets/images/icons/alerta.png" style="height: 40px; width:40px">
+                <h4 class="titulo2 negrita c2" style="line-height: 28px">Error de carga</h4>
+                <div class="center-align">Recuerda que la imagen no debe superar los 3MB y debe tener un minimo de 200px y 200px.</div>
+            </div>
+        </div>
+    </script>
+
+
+
+</body>
+
+</html>
