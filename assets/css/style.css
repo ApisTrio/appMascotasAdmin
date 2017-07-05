@@ -352,6 +352,10 @@ table.table-admin td {
     margin: 0px;
 }
 
+.no-padding {
+    padding: 0px;
+}
+
 .no-margin-bottom {
     margin-bottom: 0px
 }
@@ -655,15 +659,40 @@ h5{
     cursor: pointer;
 }
 
-.icono-menu,
-.opcion-menu {
-    display: inline-block;
-    vertical-align: middle;
+.menu {
+    height: 100%;
+}
+
+.menu-item {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.menu-item-bottom {
+    text-align: center;
+    padding: 30px 0;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.menu-item {
+    border-bottom: 2px solid #8084c0;
+}
+
+.menu-item.last {
+    border: none;
 }
 
 .icono-menu img {
-    width: 25px;
+    width: 55%;
     vertical-align: middle;
+}
+
+.label-menu {
+    text-align: center;
+    color: #8084c0;
+    padding: 0 22.5%;
 }
 
 .colapso-menu {
@@ -957,11 +986,13 @@ textarea.erroneo:focus {
     background-size: 100% 100%;
 }
 
-.contenedor-perfil {
+.contenedor-admin {
     margin-bottom: 0px;
     background-color: white;
-    overflow: hidden;
-    white-space: nowrap;
+}
+
+.contenedor-admin-interno {
+    box-shadow: 1px 0px 3px 0px #e5e5e5;
 }
 
 .contenedor-perfil-colapsado .menu-perfil > div:not(.colapso-menu) div.opcion-menu  {
@@ -1384,12 +1415,24 @@ header>div {
     vertical-align: middle;
 }
 
-header .contenedor-logo {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    position: absolute;
+.contenedor-logo {
+    padding: 10px 0 40px;
+    background-color: white;
 }
+
+.contenedor-logo .logo{
+    padding: 15px;
+}
+
+.contenedor-logo .logo a img{
+    width: 100%;
+}
+
+.menu {
+    background-color: #595c8b; 
+    position: relative;
+}
+
 
 header .contenedor-navbar {
     -webkit-box-pack: end;

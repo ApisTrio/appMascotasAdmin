@@ -30,13 +30,6 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
     })
 
     .state({
-        name: 'admin.usuarios.',
-        url: '/usuarios',
-        templateUrl: 'app/views/admin.usuarios.tpl',
-        controller: 'adminUsuariosController as adminUsuarios'
-    })
-
-    .state({
         name: 'admin.mascotas',
         url: '/mascotas',
         templateUrl: 'app/views/admin.mascotas.tpl',
