@@ -1,8 +1,14 @@
 <section>
+
+    <div class="menu-item-bottom" ui-sref="admin.salir" ui-sref-opts="{reload: true}">
+        <div class="icono-menu">
+            <img  ng-src="assets/images/menu-admin-iconos/logout_selected.svg">
+        </div>
+    </div>
 	
     <div class="row contenedor-admin">
 
-        <div class="col s1 m1 l1 lx1 menu no-padding">
+        <div class="col s2 m1 l1 lx1 menu no-padding">
 
         	<div class="contenedor-logo">
         		<div class="logo">
@@ -29,14 +35,10 @@
                 </div>
             </div>
 
-            <div class="menu-item-bottom" ui-sref="admin.salir" ui-sref-opts="{reload: true}">
-                <div class="icono-menu">
-                    <img  ng-src="assets/images/menu-admin-iconos/logout_selected.svg">
-                </div>
-            </div>
+
 
         </div><!--
-        --><div  class="col s11 m11 l11 lx11 contenedor-admin-interno" id="contenedor-admin-interno" style="min-height: 100%;">
+        --><div  class="col s10 m11 l11 lx11 contenedor-admin-interno" id="contenedor-admin-interno" style="min-height: 100%;">
             
             <div ui-view>
 

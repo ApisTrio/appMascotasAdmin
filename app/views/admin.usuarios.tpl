@@ -9,7 +9,7 @@
 	
 	<div class="row">
 
-		<div class="col s12 m2 offset-m1">
+		<div class="col s11 offset-s1 m2 offset-m1">
 			<div class="campo-formulario-admin">ID:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Especie:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Raza:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Mascota:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Usuario:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -58,7 +58,7 @@
 
 	<div class="row">
 		
-		<div class="col s12 m2 offset-m1">
+		<div class="col s11 offset-s1 m2 offset-m1">
 			<div class="campo-formulario-admin">Telefono:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -67,7 +67,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">E-mail:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -76,7 +76,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Ciudad:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -86,7 +86,7 @@
 		</div>
 
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Ciudad / Provincia:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -95,7 +95,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Perdido:</div>
         	<switch id="enabled" name="enabled" ng-model="enabled" class="white"></switch>
 		</div>
@@ -104,7 +104,7 @@
 
 	<div class="row">
 		
-		<div class="col s12 m2 offset-m1">
+		<div class="col s11 offset-s1 m2 offset-m1">
 			<div class="campo-formulario-admin">Código postal:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -113,7 +113,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">País:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -122,7 +122,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Forma placa:</div>
 			<div style="padding-top: 5px;">
                 <input ng-model="registro.terminos" type="radio" class="with-gap radio-green" id="forma_placa_redonda" name="forma_placa"/>
@@ -132,7 +132,7 @@
             </div>
 		</div>
 
-		<div class="col s12 m2">
+		<div class="col s11 offset-s1 m2">
 			<div class="campo-formulario-admin">Diseño:</div>
         	<div class="input-formulario-admin">
         		<div>
@@ -141,7 +141,7 @@
 			</div>
 		</div>
 
-		<div class="col s12 m2 margin-top-30">
+		<div class="col s11 offset-s1 m2 margin-top-30">
 			<button class="boton-verde" ng-click="admin.buscar()">BUSCAR</button>
 		</div>
 
@@ -159,13 +159,13 @@
 
 	<div class="row">
 		
-		<div class="col s12 m5 offset-m7 filtros-tabla"><span class="active">Ver todos (1230)</span> <span>Ver activos (1000)</span> <span>Ver inactivos (230)</span></div>
+		<div class="col s11 offset-s1 m5 offset-m7 filtros-tabla"><span class="active">Ver todos (1230)</span> <span>Ver activos (1000)</span> <span>Ver inactivos (230)</span></div>
 
 	</div>
 
 	<div class="row">
 		
-		<div class="col s12 m10 offset-m1">
+		<div class="col s11 offset-s1 m10 offset-m1">
 			<table class="table-admin">
 				<thead>
 					<tr>
@@ -207,10 +207,10 @@
 	<div class="row">
     	<div class="col s6 offset-s3 col m6 offset-m3 col l4 offset-l4 botones-formulario">
             <div class="row">
-                <div class="col s12 m6 l6" style="margin-bottom: 10px;">
+                <div class="col s11 offset-s1 m6 l6" style="margin-bottom: 10px;">
                     <button class="boton-neutro" ui-sref="perfil.miPerfil">Cancelar</button>
                 </div>
-                <div class="col s12 m6 l6">
+                <div class="col s11 offset-s1 m6 l6">
                     <button class="boton-verde">EXPORTAR</button>
                 </div>
             </div>

@@ -87,6 +87,10 @@ body{
     background: white;
 }
 
+body, html {
+    height: initial !important;
+}
+
 button, html, input, select, textarea {
     font-family: 'Open Sans R' !important;
 }
@@ -698,7 +702,7 @@ h5{
     text-align: center;
     padding: 30px 0;
     position: absolute;
-    width: 100%;
+    width: 8.3333%;
     bottom: 0;
 }
 
@@ -1031,11 +1035,12 @@ textarea.erroneo:focus {
 
 .contenedor-admin {
     margin-bottom: 0px;
-    background-color: white;
+    background-color: #595c8b;
 }
 
 .contenedor-admin-interno {
     box-shadow: 1px 0px 3px 0px #e5e5e5;
+    background-color: white;
 }
 
 .contenedor-perfil-colapsado .menu-perfil > div:not(.colapso-menu) div.opcion-menu  {
@@ -1472,8 +1477,7 @@ header>div {
 }
 
 .menu {
-    background-color: #595c8b; 
-    position: relative;
+    background-color: #595c8b;
 }
 
 
