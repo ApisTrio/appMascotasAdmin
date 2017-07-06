@@ -13,7 +13,7 @@
                 <div class="campo-formulario">N°</div>
                 <div class="input-formulario">
                     <div ng-class="{'margin-bottom-30': generarForm.numero.$pristine || generarForm.numero.$valid}">
-                        <input ng-model="generar.numero" placeholder="N°" type="text" name="numero" ng-pattern="/^[0-9]*$/" required>
+                        <input ng-model="adminGenerar.numero" ng-class="{'valido': generarForm.numero.$valid, 'erroneo': (!generarForm.numero.$valid && generarForm.numero.$dirty)}" placeholder="N°" type="text" name="numero" ng-pattern="/^[0-9]*$/" required>
                         <cdx-validez data-validez="generarForm.numero.$valid" data-mostrar="generarForm.numero.$dirty"></cdx-validez>
                     </div>
 
@@ -25,7 +25,13 @@
             </div>
 
 			<div class="col s3 m3 l3 no-padding">
-                <button class="boton-verde landing margin-top-30" ui-sref="login">GENERAR</button>
+                <button class="boton-verde landing margin-top-30" ng-class="{'bloqueado' : !generarForm.$valid }" ng-click="adminGenerar.generar(adminGenerar.numero, generarForm.$valid)">GENERAR</button>
+            </div>
+            
+            <div class="col s3 m3 l3 no-padding">
+                <div ng-show="adminGenerar.pasos">
+                    <img src="assets/images/forms/check.png"> Se han generado {{adminGenerar.ultimaDescarga}} Placas QR correctamente, la descarga iniciará automáticamente.
+                </div>
             </div>
 
 		</div>

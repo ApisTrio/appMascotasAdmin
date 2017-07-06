@@ -1675,3 +1675,37 @@ angular.module("mascotas")
     return formatear;
 
 }])
+
+
+.service("adminService", ["$http", "$q", "apiRootFactory", "$window",function($http, $q, apiRootFactory, $window){
+    
+    this.generar = function (cantidad) {
+
+
+        
+       /* var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.get(apiRootFactory + "placas/generar/" + cantidad).then(function (res) {
+            
+            console.log(res);
+            
+            if (res.data.response) {
+
+                defered.resolve();
+
+
+            } else {
+
+                defered.reject();
+            }
+
+        });
+
+
+        return promise;*/
+
+        $window.open(apiRootFactory + "placas/generar/" + cantidad);
+    }
+    
+}])

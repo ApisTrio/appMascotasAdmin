@@ -41,8 +41,6 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
 
                 placasService.verificarAsignada($stateParams.idPlaca).then(function (res) {
 
-
-
                     $q.all([
                         mascotasService.datos(res.mascotas_idMascota).then(res), mascotasService.duenosMascota(res.mascotas_idMascota).then(res), placasService.placasAsignadas(res.mascotas_idMascota).then(res)
                     ]).then(function (resGlobal) {
