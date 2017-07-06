@@ -16,7 +16,7 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
 
     .state({
         name: 'admin',
-        url: '/admin',
+        url: '/',
         abstract: true,
         templateUrl: 'app/views/admin.tpl',
         controller: 'adminController as admin'
