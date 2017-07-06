@@ -24,21 +24,21 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
 
     .state({
         name: 'admin.usuarios',
-        url: '/usuarios',
+        url: 'usuarios',
         templateUrl: 'app/views/admin.usuarios.tpl',
         controller: 'adminUsuariosController as adminUsuarios'
     })
 
     .state({
         name: 'admin.mascotas',
-        url: '/mascotas',
+        url: 'mascotas',
         templateUrl: 'app/views/admin.mascotas.tpl',
         controller: 'adminMascotasController as adminMascotas'
     })
 
     .state({
         name: 'admin.generar',
-        url: '/generar',
+        url: 'generar',
         templateUrl: 'app/views/admin.generar.tpl',
         controller: 'adminGenerarController as adminGenerar'
     })
