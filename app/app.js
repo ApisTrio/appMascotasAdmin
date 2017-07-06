@@ -40,7 +40,7 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
         name: 'admin.generar',
         url: '/generar',
         templateUrl: 'app/views/admin.generar.tpl',
-        controller: 'adminMascotasController as adminMascotas'
+        controller: 'adminGenerarController as adminGenerar'
     })
 
 

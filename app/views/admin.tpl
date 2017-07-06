@@ -14,17 +14,17 @@
 
             <div class="menu-item" ui-sref="admin.usuarios" ui-sref-opts="{reload: true}" class="margin-out">
                 <div class="icono-menu">
-                    <img ng-src="assets/images/menu-admin-iconos/usuarios.svg" >
+                    <img ng-src="{{ iconoUsuarios }}" ng-mouseover="iconoUsuarios = iconosUsuarios[1]" ng-mouseleave="iconoUsuarios = cambiarIcono(seleccionado, 1, iconosUsuarios)">
                 </div>
-                <div class="label-menu">
+                <div class="label-menu" ng-class="{'selected-menu-item' : seleccionado == 1}">
                     Usuarios
                 </div>
             </div>
             <div class="menu-item last" ui-sref="admin.generar" ui-sref-opts="{reload: true}">
                 <div class="icono-menu">
-                    <img  ng-src="assets/images/menu-admin-iconos/generar.svg">
+                    <img ng-src="{{ iconoGenerar }}" ng-mouseover="iconoGenerar = iconosGenerar[1]" ng-mouseleave="iconoGenerar = cambiarIcono(seleccionado, 2, iconosGenerar)">
                 </div>
-                <div class="label-menu" class="margin-out">
+                <div class="label-menu" ng-class="{'selected-menu-item' : seleccionado == 2}">
                     Generar placas
                 </div>
             </div>
