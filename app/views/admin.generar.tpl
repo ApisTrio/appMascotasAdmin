@@ -7,18 +7,19 @@
 
 	</div>
 	<div class="row">
-		<div class="col s12 m10 offset-m1 no-padding">
+		<div class="col s12 m10 offset-m1 no-padding" ng-form="generarForm">
 
 			<div class="col s3 m3 l3 no-padding">
                 <div class="campo-formulario">N°</div>
                 <div class="input-formulario">
-                    <div ng-class="{'margin-bottom-30': formPaso1.nombre.$pristine || formPaso1.nombre.$valid}">
-                        <input ng-model="generar.numero" placeholder="N°" type="text" name="nombre" required>
-                        <cdx-validez data-validez="generar.numero.$valid" data-mostrar="generar.numero.$dirty"></cdx-validez>
+                    <div ng-class="{'margin-bottom-30': generarForm.numero.$pristine || generarForm.numero.$valid}">
+                        <input ng-model="generar.numero" placeholder="N°" type="text" name="numero" ng-pattern="/^[0-9]*$/" required>
+                        <cdx-validez data-validez="generarForm.numero.$valid" data-mostrar="generarForm.numero.$dirty"></cdx-validez>
                     </div>
 
-                    <div ng-messages="generar.numero.$error" ng-show="generar.numero.$dirty">
+                    <div ng-messages="generarForm.numero.$error" ng-show="generarForm.numero.$dirty">
                         <div ng-message="required">Este campo es requerido.</div>
+                        <div ng-message="pattern">Solo se aceptan digitos.</div>
                     </div>
                 </div>
             </div>
