@@ -30,10 +30,44 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
     })
 
     .state({
-        name: 'admin.mascotas',
-        url: '/mascotas',
+        name: 'admin.mascota',
+        url: '/mascota/{idPlaca: [0-9a-zA-Z]{4,6}}',
         templateUrl: 'app/views/admin.mascotas.tpl',
-        controller: 'adminMascotasController as adminMascotas'
+        controller: 'adminMascotasController as adminMascotas',
+        resolve: {
+            placaValida: ["placasService", "mascotasService", "$stateParams", "$q", "placasService", function (placasService, mascotasService, $stateParams, $q, placasService) {
+                var defered = $q.defer();
+                var promise = defered.promise;
+
+                placasService.verificarAsignada($stateParams.idPlaca).then(function (res) {
+
+                    $q.all([
+                        mascotasService.datos(res.mascotas_idMascota).then(res), mascotasService.duenosMascota(res.mascotas_idMascota).then(res), placasService.placasAsignadas(res.mascotas_idMascota).then(res)
+                    ]).then(function (resGlobal) {
+
+                        var datos = {
+                            basico: resGlobal[0],
+                            duenos: resGlobal[1],
+                            placas: resGlobal[2]
+                        }
+
+                        defered.resolve(datos);
+                    })
+
+                })
+
+                .catch(function (res) {
+
+
+                    defered.reject("PLACA_INVALIDA")
+
+                })
+
+                return promise;
+
+            }]
+
+        }
     })
 
     .state({
@@ -42,9 +76,6 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
         templateUrl: 'app/views/admin.generar.tpl',
         controller: 'adminGenerarController as adminGenerar'
     })
-
-
-
 
     //$locationProvider.html5Mode(true);
 
@@ -72,14 +103,7 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
             $state.go("perfil.miPerfil");
         } else if (error === "PLACA_INVALIDA") {
 
-            $state.go("landing");
-        } else if (error === "PLACA_INVALIDA_PRIVADA") {
-
-            $state.go("perfil.misMascotas");
-
-        } else {
-
-            console.log(error);
+            $state.go("admin.usuarios");
         }
 
     });
