@@ -38,7 +38,7 @@
 
 
         </div><!--
-        --><div  class="col s10 m11 l11 lx11 contenedor-admin-interno" id="contenedor-admin-interno" style="min-height: 100%;">
+        --><div  class="col s10 m11 l11 lx11 contenedor-admin-interno" id="contenedor-admin-interno" style="min-height: 100%; padding: 0">
             
             <div ui-view>
 

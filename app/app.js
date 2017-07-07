@@ -32,8 +32,8 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
     .state({
         name: 'admin.mascota',
         url: '/mascota/{idPlaca: [0-9a-zA-Z]{4,6}}',
-        templateUrl: 'app/views/admin.mascotas.tpl',
-        controller: 'adminMascotasController as adminMascotas',
+        templateUrl: 'app/views/admin.mascota.tpl',
+        controller: 'adminMascotaController as adminMascota',
         resolve: {
             placaValida: ["placasService", "mascotasService", "$stateParams", "$q", "placasService", function (placasService, mascotasService, $stateParams, $q, placasService) {
                 var defered = $q.defer();

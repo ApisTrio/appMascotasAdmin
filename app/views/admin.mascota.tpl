@@ -1,4 +1,13 @@
 <section class="color-blanco header-mascota">
+
+    <div class="row">
+        
+        <div class="col s10 offset-s1 m10 offset-m1 titulo-admin">
+            <p>Mascota</p>
+        </div>
+
+    </div>
+
     <div class="row">
         <div class="col s12 center-align">
             <h4 class="negrita no-margin-bottom white-space-normal">{{adminMascota.datos.basico.nombre}}</h4>
@@ -39,11 +48,6 @@
                 </div>
 
                 <div class="divisor-placas" ng-show="!$last" ng-repeat-end></div>
-            </div>
-        </div>
-        <div class="col s12 m12 l3 center-align">
-            <div class="agregar-placa-perfil" ui-sref="perfil.misMascotasPlaca({idMascota: adminMascota.datos.basico.idMascota})">
-                <img src="assets/images/forms/agregar_placa.png"> Agregar placa
             </div>
         </div>
     </div>
@@ -842,11 +846,4 @@
 
 </section>
 
-<section>
-    <div class="row">
-        <div class="col s10 offset-s1">
-            <div ui-sref="perfil.misMascotasEliminar({idPlaca: adminMascota.datos.basico.codigo})" class="eliminar-pequeno">Dar de baja a {{adminMascota.datos.basico.nombre}}</div>
-        </div>
-    </div>
 
-</section>
