@@ -170,33 +170,43 @@
 				<thead>
 					<tr>
 						<th>Usuario <img src="assets/images/icons/orden_lista.png"></th>
-						<th>Mascota <img src="assets/images/icons/orden_lista.png"></th>
-						<th>ID <img src="assets/images/icons/orden_lista.png"></th>
-						<th>Especie <img src="assets/images/icons/orden_lista.png"></th>
-						<th>Raza <img src="assets/images/icons/orden_lista.png"></th>
 						<th>Teléfono <img src="assets/images/icons/orden_lista.png"></th>
 						<th>E-mail <img src="assets/images/icons/orden_lista.png"></th>
 						<th>Ubicación <img src="assets/images/icons/orden_lista.png"></th>
-						<th>C.P <img src="assets/images/icons/orden_lista.png"></th>
+						<th>C.P <img src="assets/images/icons/orden_lista.png"></th>						
+						<th>Mascota <img src="assets/images/icons/orden_lista.png"></th>
+						<th>ID <img src="assets/images/icons/orden_lista.png"></th>
+						<th>Modelos <img src="assets/images/icons/orden_lista.png"></th>
+						<th>Especie <img src="assets/images/icons/orden_lista.png"></th>
+						<th>Raza <img src="assets/images/icons/orden_lista.png"></th>
 						<th>Fecha <img src="assets/images/icons/orden_lista.png"></th>
-						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td class="usuario"> Daniel Torres</td>
-						<td>Duke</td>
+						<td class="usuario" rowspan="2"> Daniel Torres</td>
+						<td rowspan="2">54326789</td>
+						<td rowspan="2">danieljtorres94@gmail.com</td>
+						<td rowspan="2">Ronda, Malaga, España</td>
+						<td rowspan="2">08907</td>
+						<td class="usuario">Duke</td>
 						<td>
 							123456 <br> 654321
 						</td>
+						<td>Modelos</td>
 						<td>Perro</td>
 						<td>Mestizo de Braco Aleman</td>
-						<td>54326789</td>
-						<td>danieljtorres94@gmail.com</td>
-						<td>Ronda, Malaga, España</td>
-						<td>08907</td>
 						<td>03 Jul 2017</td>
-						<td style="text-align: center;"><img src="assets/images/icons/editar.png" style="width: 18px; margin: 5px;"></td>
+					</tr>
+					<tr>
+						<td class="usuario">Duke</td>
+						<td>
+							123456 <br> 654321
+						</td>
+						<td>Modelos</td>
+						<td>Perro</td>
+						<td>Mestizo de Braco Aleman</td>
+						<td>03 Jul 2017</td>
 					</tr>
 				</tbody>
 			</table>
