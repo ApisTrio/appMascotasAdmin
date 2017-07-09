@@ -7,11 +7,21 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
 
     $stateProvider
 
-    .state({
+        .state({
         name: 'loginAdmin',
         url: '/',
         templateUrl: 'app/views/loginAdmin.tpl',
-        controller: 'loginAdminController as loginAdmin'
+        controller: 'loginAdminController as loginAdmin',
+        resolve: {
+            "currentAuth": ["$q", "adminService", function ($q, adminService) {
+
+                if (adminService.autorizado()) {
+
+                    return $q.reject("LOGOUT_REQUIRED");
+                }
+
+                }]
+        }
     })
 
     .state({
@@ -19,7 +29,23 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
         url: '/panel',
         abstract: true,
         templateUrl: 'app/views/admin.tpl',
-        controller: 'adminController as admin'
+        controller: 'adminController as admin',
+        resolve: {
+            "currentAuth": ["$q", "adminService", function ($q, adminService) {
+
+                if (!adminService.autorizado()) {
+
+                    return $q.reject("AUTH_REQUIRED");
+                }
+
+                if (!adminService.autorizado().token) {
+
+                    usuariosService.salir();
+
+                }
+
+                }]
+        }
     })
 
     .state({
@@ -28,6 +54,47 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
         templateUrl: 'app/views/admin.usuarios.tpl',
         controller: 'adminUsuariosController as adminUsuarios'
     })
+
+    .state({
+        name: 'admin.usuariosIndividual',
+        url: '/usuarios/:idUsuario',
+        templateUrl: 'app/views/admin.usuariosIndividual.tpl',
+        controller: 'usuariosIndividualController as usuariosIndividual',
+        resolve: {
+            idValido: ["usuariosService", "$stateParams", "$q", "validarService", "mascotasService", function (usuariosService, $stateParams, $q, validarService, mascotasService) {
+
+                var defered = $q.defer();
+                var promise = defered.promise;
+
+                validarService.validar("idUsuario", $stateParams.idUsuario).then(function (res) {
+
+                        usuariosService.obtener($stateParams.idUsuario).then(function (resUsuario) {
+                    
+                            mascotasService.duenoObtener(resUsuario.duenos_idDueno).then(function(resDueno){
+                                var datos = {usuario:resUsuario, dueno: resDueno}
+                                
+                                defered.resolve(datos);
+                            })
+                            
+                                   
+            
+                        });
+
+
+                    })
+                    .catch(function (res) {
+
+                        defered.reject("ID_INVALIDO");
+
+                    })
+
+                return promise;
+
+            }]
+        }
+    })
+
+
 
     .state({
         name: 'admin.mascota',
@@ -82,28 +149,32 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
 
 }])
 
-.run(["$rootScope", "$state", "$anchorScroll",function ($rootScope, $state,  $anchorScroll) {
-    
-    $rootScope.$on('$stateChangeSuccess', function() {
-        
+.run(["$rootScope", "$state", "$anchorScroll", function ($rootScope, $state, $anchorScroll) {
+
+    $rootScope.$on('$stateChangeSuccess', function () {
+
         $anchorScroll();
-        
+
     })
-                   
-                   
+
+
 
     $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
         // We can catch the error thrown when the $requireSignIn promise is rejected
         // and redirect the user back to the home page
         if (error === "AUTH_REQUIRED") {
 
-            $state.go("login");
+            $state.go("loginAdmin");
         } else if (error === "LOGOUT_REQUIRED") {
 
-            $state.go("perfil.miPerfil");
+            $state.go("admin.usuarios");
         } else if (error === "PLACA_INVALIDA") {
 
             $state.go("admin.usuarios");
+        } else if (error === "ID_INVALIDO") {
+
+            $state.go("admin.usuarios");
+
         }
 
     });

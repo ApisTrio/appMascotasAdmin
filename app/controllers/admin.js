@@ -1,6 +1,6 @@
 angular.module("mascotas")
 
-.controller("adminController", ["$scope", function ($scope) {
+.controller("adminController", ["$scope", "$rootScope", "adminService", "$state",function ($scope, $rootScope, adminService, $state) {
     
     var cdx = this;
     
@@ -26,5 +26,29 @@ angular.module("mascotas")
         return iconos[0];
 
     }
+    
+    
+    
+    $scope.$watch('$root.objetoToken', function (valor, nuevoValor) {
+
+        if (valor !== nuevoValor) {
+
+            if ($rootScope.objetoToken == false) {
+
+                $state.go("loginAdmin");
+
+            }
+
+        }
+
+    });
+    
+    
+    cdx.salir = function(){
+        
+        adminService.salir();
+        
+    }
+    
 
 }])

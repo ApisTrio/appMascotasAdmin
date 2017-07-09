@@ -1,34 +1,18 @@
 angular.module("mascotas")
 
-.controller("loginAdminController", ["usuariosService", "$state", "currentAuth", "$scope", "$mdDialog", function (usuariosService, $state, currentAuth, $scope, $mdDialog) {
+.controller("loginAdminController", ["adminService", "$state", "currentAuth", "$scope", "$mdDialog", function (adminService, $state, currentAuth, $scope, $mdDialog) {
 
     var cdx = this;
 
     cdx.mostrarModal = function ($event, texto) {
 
         
-        if (texto == "Clave invalida") {
-            var titulo = "La clave que has introducido no es válida";
-            var mensaje = "Verifica que la clave sea correcta";
+        if (texto == "datos-invalidos") {
+            var titulo = "Los datos introducidos son incorrectos";
+            var mensaje = "Verifica que el usuario o la contraseña sean correctos";
 
         }
         
-        else if(texto == "Su usuario no existe"){
-            
-            var titulo = "El usuario que has introducido no existe";
-            var mensaje = "Verifica que el usuario sea correcto";
-            
-        }
-        
-        
-        else if(texto == "Usuario inactivo"){
-            
-            var titulo = "Todavía no has confirmado tu cuenta";
-            var mensaje = "Por favor, revisa tu bandeja de entrada y confirma tu cuenta para poder iniciar sesión";
-            
-        }
-
-
         $mdDialog.show({
             parent: angular.element(document.body),
             targetEvent: $event,
@@ -61,17 +45,17 @@ angular.module("mascotas")
 
         if (valido) {
 
-            usuariosService.sesion(datos.usuario, datos.pass)
+            adminService.login(datos)
 
             .then(function (res) {
 
-                $state.go("perfil.miPerfil");
+                $state.go("admin.usuarios");
 
             })
 
             .catch(function (res) {
                 
-                cdx.mostrarModal(null, res);
+                cdx.mostrarModal(null, 'datos-invalidos');
 
 
             })

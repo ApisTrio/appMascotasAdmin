@@ -1,6 +1,6 @@
 <section>
 
-    <div class="menu-item-bottom" ui-sref="admin.salir" ui-sref-opts="{reload: true}">
+    <div class="menu-item-bottom" ng-click="admin.salir()">
         <div class="icono-menu">
             <img  ng-src="assets/images/menu-admin-iconos/logout_selected.svg">
         </div>

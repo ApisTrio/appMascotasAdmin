@@ -322,6 +322,28 @@ angular.module("mascotas")
 
 .service("usuariosService", ["$http", "$q", "apiRootFactory", "$window", "$rootScope", function ($http, $q, apiRootFactory, $window, $rootScope) {
 
+    this.obtener = function(idUsuario){
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.get(apiRootFactory + "usuarios/datos/" + idUsuario).then(function (res) {
+
+            if (res.data.response) {
+
+                defered.resolve(res.data.result);
+
+            } else {
+
+                defered.reject();
+            }
+
+        });
+
+        return promise;
+        
+    }
+    
     this.borrar = function (token) {
 
 
@@ -1013,6 +1035,32 @@ angular.module("mascotas")
         return promise;
 
     }
+    
+    this.duenoObtener = function(idDueno){
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+
+
+        $http.get(apiRootFactory + "duenos/datos/" + idDueno).then(function (res) {
+
+            if (res.data.response) {
+
+                defered.resolve(res.data.result);
+
+
+            } else {
+
+                defered.reject();
+            }
+
+        });
+
+
+        return promise;
+        
+    }
 
 
 
@@ -1661,6 +1709,58 @@ angular.module("mascotas")
 })
 
 
+.factory('AuthInterceptorAdmin', function ($window, $q, $rootScope) {
+
+    function salir() {
+
+        $rootScope.objetoToken = false;
+        $window.localStorage.removeItem('cdxTokenAdmin');
+
+    }
+
+
+    function autorizado() {
+
+        if ($rootScope.objetoToken) {
+
+            return $rootScope.objetoToken;
+
+        } else {
+
+            if ($window.localStorage.getItem('cdxTokenAdmin')) {
+
+                $rootScope.objetoToken = JSON.parse($window.localStorage.getItem('cdxTokenAdmin'));
+
+                return $rootScope.objetoToken;
+
+            } else {
+
+                return false;
+
+            }
+
+        }
+
+    }
+
+    return {
+        request: function (config) {
+            config.headers = config.headers || {};
+            if (autorizado()) {
+                config.headers.auth = autorizado().token;
+            }
+            return config || $q.when(config);
+        },
+        response: function (response) {
+            if (response.status === 401) {
+                salir();
+            }
+            return response || $q.when(response);
+        }
+    };
+})
+
+
 
 .factory("formatearFactory", [function () {
 
@@ -1677,35 +1777,72 @@ angular.module("mascotas")
 }])
 
 
-.service("adminService", ["$http", "$q", "apiRootFactory", "$window",function($http, $q, apiRootFactory, $window){
+.service("adminService", ["$http", "$q", "apiRootFactory", "$window", "$rootScope",function($http, $q, apiRootFactory, $window, $rootScope){
     
     this.generar = function (cantidad) {
 
-
+        $window.open(apiRootFactory + "placas/generar/" + cantidad);
+    }
+    
+    this.login = function(datos){
         
-       /* var defered = $q.defer();
+        var defered = $q.defer();
         var promise = defered.promise;
 
-        $http.get(apiRootFactory + "placas/generar/" + cantidad).then(function (res) {
+        $http.post(apiRootFactory + "admin/login", datos)
             
-            console.log(res);
-            
-            if (res.data.response) {
+       .then(function (res) {
 
-                defered.resolve();
+            var objetoToken = res.data;
+            $window.localStorage.setItem('cdxTokenAdmin', JSON.stringify(objetoToken));
+            $rootScope.objetoToken = objetoToken;
 
+            defered.resolve(res);
+
+        })
+
+        .catch(function (res) {
+
+            $window.localStorage.removeItem('cdxTokenAdmin');
+            defered.reject(res.data.message);
+
+        })
+
+        return promise;
+        
+    }
+    
+     this.autorizado = function () {
+
+        if ($rootScope.objetoToken) {
+
+            return $rootScope.objetoToken;
+
+        } else {
+
+            if ($window.localStorage.getItem('cdxTokenAdmin')) {
+
+                $rootScope.objetoToken = JSON.parse($window.localStorage.getItem('cdxTokenAdmin'));
+
+                return $rootScope.objetoToken;
 
             } else {
 
-                defered.reject();
+                return false;
+
             }
 
-        });
+        }
 
-
-        return promise;*/
-
-        $window.open(apiRootFactory + "placas/generar/" + cantidad);
     }
+
+
+    this.salir = function () {
+
+        $rootScope.objetoToken = false;
+        $window.localStorage.removeItem('cdxTokenAdmin');
+
+    }
+    
     
 }])
