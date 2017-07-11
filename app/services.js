@@ -1837,6 +1837,52 @@ angular.module("mascotas")
     }
 
 
+    this.registros = function () {
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.get(apiRootFactory + "admin/todos-los-registros")
+            
+       .then(function (res) {
+
+            defered.resolve(res);
+
+        })
+
+        .catch(function (res) {
+
+            defered.reject(res.data.message);
+
+        })
+
+        return promise;
+        
+    }
+
+    this.busqueda = function (datos) {
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.post(apiRootFactory + "admin/super-busqueda", datos)
+            
+       .then(function (res) {
+
+            defered.resolve(res);
+
+        })
+
+        .catch(function (res) {
+
+            defered.reject(res.data.message);
+
+        })
+
+        return promise;
+        
+    }
+
     this.salir = function () {
 
         $rootScope.objetoToken = false;
