@@ -50,6 +50,26 @@
                 <div class="divisor-placas" ng-show="!$last" ng-repeat-end></div>
             </div>
         </div>
+        <div class="col s12 m12 l3 center-align">
+            <div class="agregar-placa-perfil" ui-sref="admin.agregarPlaca({idPlaca: adminMascota.datos.placas[0].codigo})">
+                <img src="assets/images/forms/agregar_placa.png"> Agregar placa
+            </div>
+        </div>
+    </div>
+
+    <div class="row  no-margin-bottom c2 negrita" ng-if="(adminMascota.datos.basico.perdida && !adminMascota.datos.basico.encontrado)">
+        <div class="col s12 center-align">
+            <div class="desactivar-alarma-perfil white-space-normal" ui-sref="admin.desactivarAlerta({idPlaca: adminMascota.datos.placas[0].codigo})">
+                <img src="assets/images/icons/alerta.png"> Desactivar alerta de mascota perdida
+            </div>
+        </div>
+    </div>
+    <div class="row  no-margin-bottom c2 negrita" ng-if="(!adminMascota.datos.basico.perdida && !adminMascota.datos.basico.encontrado) || (adminMascota.datos.basico.perdida && adminMascota.datos.basico.encontrado)">
+        <div class="col s12 center-align">
+            <div class="desactivar-alarma-perfil white-space-normal" ui-sref="admin.activarAlerta({idPlaca: adminMascota.datos.placas[0].codigo})">
+                <img src="assets/images/icons/alerta.png"> Activar alerta de mascota perdida
+            </div>
+        </div>
     </div>
 </section>
 

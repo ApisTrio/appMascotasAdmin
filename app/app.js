@@ -184,6 +184,155 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
 
         }
     })
+    
+    .state({
+        name: 'admin.agregarPlaca',
+        url: '/mascota/{idPlaca: [0-9a-zA-Z]{4,6}}/agregar-placa',
+        templateUrl: 'app/views/admin.agregarPlaca.tpl',
+        controller: 'adminAgregarPlacaController as adminAgregarPlaca',
+        resolve: {
+            placaValida: ["placasService", "mascotasService", "$stateParams", "$q", "placasService", function (placasService, mascotasService, $stateParams, $q, placasService) {
+                
+                var defered = $q.defer();
+                var promise = defered.promise;
+
+                placasService.verificarAsignada($stateParams.idPlaca).then(function (res) {
+
+                    $q.all([
+                        mascotasService.datos(res.mascotas_idMascota).then(res), mascotasService.duenosMascota(res.mascotas_idMascota).then(res), placasService.placasAsignadas(res.mascotas_idMascota).then(res)
+                    ]).then(function (resGlobal) {
+                        
+                        var datos = {
+                            basico: resGlobal[0],
+                            duenos: resGlobal[1],
+                            placas: resGlobal[2]
+                        }
+                        
+                        console.log(datos);
+                        
+                        defered.resolve(datos);
+                        
+                    }).catch(function(res){
+                        
+                        defered.reject("PLACA_INVALIDA")
+                        
+                    })
+
+                })
+
+                .catch(function (res) {
+
+
+                    defered.reject("PLACA_INVALIDA")
+
+                })
+
+                return promise;
+
+            }]
+
+        }
+    })
+    
+    .state({
+        name: 'admin.activarAlerta',
+        url: '/mascota/{idPlaca: [0-9a-zA-Z]{4,6}}/activar-alerta',
+        templateUrl: 'app/views/admin.activarAlerta.tpl',
+        controller: 'adminActivarAlertaController as adminActivarAlerta',
+        resolve: {
+            placaValida: ["placasService", "mascotasService", "$stateParams", "$q", "placasService", function (placasService, mascotasService, $stateParams, $q, placasService) {
+                
+                var defered = $q.defer();
+                var promise = defered.promise;
+
+                placasService.verificarAsignada($stateParams.idPlaca).then(function (res) {
+
+                    $q.all([
+                        mascotasService.datos(res.mascotas_idMascota).then(res), mascotasService.duenosMascota(res.mascotas_idMascota).then(res), placasService.placasAsignadas(res.mascotas_idMascota).then(res)
+                    ]).then(function (resGlobal) {
+                        
+                        var datos = {
+                            basico: resGlobal[0],
+                            duenos: resGlobal[1],
+                            placas: resGlobal[2]
+                        }
+                        
+                        console.log(datos);
+                        
+                        defered.resolve(datos);
+                        
+                    }).catch(function(res){
+                        
+                        defered.reject("PLACA_INVALIDA")
+                        
+                    })
+
+                })
+
+                .catch(function (res) {
+
+
+                    defered.reject("PLACA_INVALIDA")
+
+                })
+
+                return promise;
+
+            }]
+
+        }
+    })
+    
+    .state({
+        name: 'admin.desactivarAlerta',
+        url: '/mascota/{idPlaca: [0-9a-zA-Z]{4,6}}/desactivar-alerta',
+        templateUrl: 'app/views/admin.desactivarAlerta.tpl',
+        controller: 'adminDesactivarAlertaController as adminDesactivarAlerta',
+        resolve: {
+            placaValida: ["placasService", "mascotasService", "$stateParams", "$q", "placasService", function (placasService, mascotasService, $stateParams, $q, placasService) {
+                
+                var defered = $q.defer();
+                var promise = defered.promise;
+
+                placasService.verificarAsignada($stateParams.idPlaca).then(function (res) {
+
+                    $q.all([
+                        mascotasService.datos(res.mascotas_idMascota).then(res), mascotasService.duenosMascota(res.mascotas_idMascota).then(res), placasService.placasAsignadas(res.mascotas_idMascota).then(res)
+                    ]).then(function (resGlobal) {
+                        
+                        var datos = {
+                            basico: resGlobal[0],
+                            duenos: resGlobal[1],
+                            placas: resGlobal[2]
+                        }
+                        
+                        console.log(datos);
+                        
+                        defered.resolve(datos);
+                        
+                    }).catch(function(res){
+                        
+                        defered.reject("PLACA_INVALIDA")
+                        
+                    })
+
+                })
+
+                .catch(function (res) {
+
+
+                    defered.reject("PLACA_INVALIDA")
+
+                })
+
+                return promise;
+
+            }]
+
+        }
+    })
+    
+    
 
     .state({
         name: 'admin.generar',
