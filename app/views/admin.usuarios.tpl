@@ -161,7 +161,7 @@
 
 	<div class="row">
 		
-		<div class="col s11 offset-s1 m5 offset-m7 filtros-tabla"><span ng-click="adminUsuarios.activo = 'all'" ng-class="{active: adminUsuarios.activo == 'all'}">Ver todos ({{adminUsuarios.registros.length}})</span> <span ng-click="adminUsuarios.activo = 1" ng-class="{active: adminUsuarios.activo == 1}">Ver activos ({{adminUsuarios.registrosActivos()}})</span> <span ng-click="adminUsuarios.activo = null" ng-class="{active: adminUsuarios.activo == null}">Ver inactivos ({{adminUsuarios.registrosInactivos()}})</span></div>
+		<div class="col s11 offset-s1 m5 offset-m7 filtros-tabla"><span ng-click="adminUsuarios.activo = 'all'" ng-class="{active: adminUsuarios.activo == 'all'}">Ver todos ({{adminUsuarios.registros.length}})</span> <span ng-click="adminUsuarios.activo = 1" ng-class="{active: adminUsuarios.activo == 1}">Ver activos ({{adminUsuarios.registrosActivos()}})</span> <span ng-click="adminUsuarios.activo = 0" ng-class="{active: adminUsuarios.activo == null}">Ver inactivos ({{adminUsuarios.registrosInactivos()}})</span></div>
 
 	</div>
 

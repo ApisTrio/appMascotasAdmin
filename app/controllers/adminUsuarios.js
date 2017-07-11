@@ -50,7 +50,7 @@ angular.module("mascotas")
 
     cdx.registrosInactivos = function() { 
 
-    	return $filter('filter')(cdx.registros, {activo: null}).length
+    	return $filter('filter')(cdx.registros, {activo: 0}).length
 
 	}
 }])
