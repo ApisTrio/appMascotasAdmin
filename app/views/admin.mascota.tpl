@@ -8,17 +8,17 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" ng-if="!adminMascota.eliminarCompleto">
         <div class="col s12 center-align">
             <h4 class="negrita no-margin-bottom white-space-normal">{{adminMascota.datos.basico.nombre}}</h4>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-if="!adminMascota.eliminarCompleto">
         <div class="col s12 center-align white-space-normal"> {{adminMascota.datos.basico.raza}}, {{adminMascota.datos.basico.edad}}</div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-if="!adminMascota.eliminarCompleto">
         <div class="col s12 m4 offset-m4 center-align" ng-form="cargarFotoForm">
             <div class="center-align  contenedor-foto-mascota" ngf-select="adminMascota.cargar($file)" ng-model="adminMascota.imagen" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="200" ngf-min-width="200" ngf-resize="{width: 200, height: 200, type: 'image/jpeg',quality: 0.5, ratio: '1:1', centerCrop: true, restoreExif: false}" ngf-fix-orientation="true" name="foto">
                 <div class="circle foto-mascota" style="background-image:url({{adminMascota.apiDir.dominio}}{{adminMascota.apiDir.path}}{{adminMascota.apiDir.imagenes.mascotas}}{{adminMascota.datos.basico.foto}}); background-position: 100% 100%; background-size: cover;" ng-if="adminMascota.datos.basico.foto">
@@ -26,7 +26,7 @@
                 <div class="circle foto-mascota" style="background-image:url(assets/images/icons/foto_perfil.png); border: 1px solid black" ng-if="!adminMascota.datos.basico.foto">
                 </div>
                 <img class="editar-foto-mascota" src="assets/images/icons/editar_foto_hover.png">
-                <img class="exclamacion-perdida" src="assets/images/icons/alerta_activada_mascota_perdida.png" ng-show="(adminMascota.datos.basico.perdida && !adminMascota.datos.basico.encontrado)">
+                
 
             </div>
             <div ng-messages="cargarFotoForm.foto.$error" class="white-space-normal">
@@ -38,7 +38,7 @@
     </div>
 
 
-    <div class="row c2">
+    <div class="row c2" ng-if="!adminMascota.eliminarCompleto">
 
         <div class="col s12 m12 l6 offset-l3 center-align">
             <div class="placas-mascota">
@@ -51,17 +51,10 @@
             </div>
         </div>
     </div>
-    <div class="row  no-margin-bottom c2 negrita" ng-if="(adminMascota.datos.basico.perdida && !adminMascota.datos.basico.encontrado)">
-        <div class="col s12 center-align">
-            <div class="desactivar-alarma-perfil white-space-normal" ui-sref="perfil.desactivarAlerta({idMascota: adminMascota.datos.basico.idMascota})">
-                <img src="assets/images/icons/alerta.png"> Desactivar alerta de mascota perdida
-            </div>
-        </div>
-    </div>
 </section>
 
 <!---- INFORMACION BASICA ---->
-<section class="informacion-mascota" ng-switch="adminMascota.editar.basico.pasos">
+<section class="informacion-mascota" ng-switch="adminMascota.editar.basico.pasos" ng-if="!adminMascota.eliminarCompleto">
 
     <div class="row">
         <div class="col s10 m8 offset-m1">
@@ -248,7 +241,7 @@
     </div>
 </section>
 <!---- INFORMACION MEDICA ---->
-<section class="informacion-mascota">
+<section class="informacion-mascota" ng-if="!adminMascota.eliminarCompleto">
     <div class="row">
         <div class="col s10 m8 offset-m1">
             <h4 class="titulo2 negrita interlineado20 c2">Información médica</h4>
@@ -375,7 +368,7 @@
     </div>
 
 </section>
-<section class="informacion-mascota">
+<section class="informacion-mascota" ng-if="!adminMascota.eliminarCompleto">
     <div class="row">
         <div class="col s10 m8 offset-m1">
             <div class="titulo-info c2">Información médica adicional</div>
@@ -525,7 +518,7 @@
 </section>
 
 <!---- INFORMACION DE MIS DUEÑOS ---->
-<section class="informacion-mascota" ng-switch="adminMascota.editar.duenos.pasos">
+<section class="informacion-mascota" ng-switch="adminMascota.editar.duenos.pasos" ng-if="!adminMascota.eliminarCompleto">
     <div class="row">
         <div class="col s10 m8 offset-m1">
             <h4 class="titulo2 negrita interlineado20 c2">Información de mi(s) dueño(s)</h4>
@@ -844,6 +837,55 @@
         </div>
     </div>
 
+</section>
+
+<section ng-switch="adminMascota.eliminarPasos" ng-init="adminMascota.eliminarPasos = 1"  ng-if="!adminMascota.eliminarCompleto">
+    <div class="row" ng-switch-default>
+        <div class="col s10 offset-s1">
+            <div ng-click="adminMascota.eliminarPasos = 2" class="eliminar-pequeno">Eliminar Mascota</div>
+        </div>
+    </div>
+    <div class="row" ng-switch-when="2">
+        <div class="row">
+            <div class="col s10 offset-s1 center-align">
+                Se eliminará la mascota {{adminMascota.datos.basico.nombre}}, para conﬁrmar escribe la palabra ELIMINAR 
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col s10 offset-s1 m4 offset-m4 l4 offset-l4">
+                <div class="input-formulario">
+                    <input ng-model="adminMascota.eliminar" placeholder="ELIMINAR" type="text"  style="width: 100%">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6 offset-s3 col m4 offset-m4 col l4 offset-l4 botones-formulario">
+                <div class="row">
+                    <div class="col s12 m12 l6" style="margin-bottom: 10px">
+                        <button class="boton-neutro" ng-click="adminMascota.eliminarCancelar()">Cancelar</button>
+                    </div>
+                    <div class="col s12 m12 l6">
+                        <button class="boton-verde" ng-click="adminMascota.eliminarConfirmar(adminMascota.uppercase(adminMascota.eliminar), adminMascota.datos.basico.idMascota)" ng-class="{'bloqueado' : !adminMascota.uppercase(adminMascota.eliminar) }">CONFIRMAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section  ng-if="adminMascota.eliminarCompleto">
+        <div class="row">
+            <div class="col s10 offset-s1 center-align">
+                <img src="assets/images/forms/Confirm.png">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s10 offset-s1 center-align">
+                <h4 class="titulo2 negrita interlineado20 c2">Hemos eliminado a la mascota {{adminMascota.datos.basico.nombre}}</h4>
+            </div>
+        </div>
 </section>
 
 

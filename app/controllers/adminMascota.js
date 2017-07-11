@@ -545,6 +545,38 @@ angular.module("mascotas")
         
     }
 
+    
+    
+     cdx.uppercase = function(palabra){
+        
+        return $filter('uppercase')(palabra) == 'ELIMINAR';
+        
+    }
+    
+    cdx.eliminarCancelar = function(){
+        
+        cdx.eliminar = null;
+        cdx.eliminarPasos = 1;
+    }
+
+    cdx.eliminarConfirmar = function(confirmado, idMascota){
+        
+        if(confirmado){
+            
+            mascotasService.darBaja(idMascota).then(function(res){
+                
+                cdx.eliminarCompleto = true;
+                
+            }).catch(function(res){
+                
+                console.log("fallo");
+                
+            })
+            
+        }
+        
+        
+    }
 
 
 

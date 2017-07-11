@@ -71,7 +71,9 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
                         usuariosService.obtener($stateParams.idUsuario).then(function (resUsuario) {
                     
                             mascotasService.duenoObtener(resUsuario.duenos_idDueno).then(function(resDueno){
-                                var datos = {usuario:resUsuario, dueno: resDueno}
+                                
+                                resDueno.idDueno = resUsuario.duenos_idDueno;
+                                var datos = {usuario:resUsuario, dueno: resDueno};
                                 
                                 defered.resolve(datos);
                             })
@@ -93,6 +95,48 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
             }]
         }
     })
+    
+    .state({
+        name: 'admin.usuariosNuevaMascota',
+        url: '/usuarios/:idUsuario/nueva-mascota',
+        templateUrl: 'app/views/admin.nuevaMascota.tpl',
+        controller: 'nuevaMascotaController as nuevaMascota',
+        resolve: {
+            idValido: ["usuariosService", "$stateParams", "$q", "validarService", "mascotasService", function (usuariosService, $stateParams, $q, validarService, mascotasService) {
+
+                var defered = $q.defer();
+                var promise = defered.promise;
+
+                validarService.validar("idUsuario", $stateParams.idUsuario).then(function (res) {
+
+                        usuariosService.obtener($stateParams.idUsuario).then(function (resUsuario) {
+                    
+                            mascotasService.duenoObtener(resUsuario.duenos_idDueno).then(function(resDueno){
+                                
+                                resDueno.idDueno = resUsuario.duenos_idDueno;
+                                var datos = {usuario:resUsuario, dueno: resDueno};
+                                
+                                defered.resolve(datos);
+                            })
+                            
+                                   
+            
+                        });
+
+
+                    })
+                    .catch(function (res) {
+
+                        defered.reject("ID_INVALIDO");
+
+                    })
+
+                return promise;
+
+            }]
+        }
+        
+    })
 
 
 
@@ -111,7 +155,7 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
                     $q.all([
                         mascotasService.datos(res.mascotas_idMascota).then(res), mascotasService.duenosMascota(res.mascotas_idMascota).then(res), placasService.placasAsignadas(res.mascotas_idMascota).then(res)
                     ]).then(function (resGlobal) {
-
+                        
                         var datos = {
                             basico: resGlobal[0],
                             duenos: resGlobal[1],
@@ -119,6 +163,10 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
                         }
 
                         defered.resolve(datos);
+                    }).catch(function(res){
+                        
+                        defered.reject("PLACA_INVALIDA")
+                        
                     })
 
                 })
