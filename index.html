@@ -54,6 +54,7 @@
     <script src="app/controllers/adminUsuarios.js"></script>
     <script src="app/controllers/loginAdmin.js"></script>
     <script src="app/controllers/usuariosIndividual.js"></script>
+    <script src="app/controllers/nuevaMascota.js"></script>
 </head>
 
 <body ng-app="mascotas">
@@ -130,8 +131,6 @@
 
             <img src="assets/images/forms/right.png" ng-click="avanzar(cdx.salto,true, modelos[seleccionado].length, (modelos[seleccionado] | limitTo: limite() : cdx.salto  + 1).length, limite())" ng-class="{'escondidoQUITARMAY': !((modelos[seleccionado] | limitTo: limite() : cdx.salto  + 1).length == limite())}">
         </div>
-
-<div>{{hola}}</div>
 
     </script>
 

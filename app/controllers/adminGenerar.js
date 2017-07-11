@@ -1,6 +1,6 @@
 angular.module("mascotas")
 
-.controller("adminGenerarController", ["$scope", "adminService", function ($scope, adminService) {
+.controller("adminGenerarController", ["$scope", "adminService", "$window",function ($scope, adminService, $window) {
     
     var cdx = this;
     
@@ -12,6 +12,14 @@ angular.module("mascotas")
         $scope.$parent.iconoGenerar = $scope.$parent.cambiarIcono($scope.$parent.seleccionado, 2, $scope.$parent.iconosGenerar);
     }
     
+    cdx.lista = [];
+    
+    adminService.listaPlacas().then(function(res){
+        
+        cdx.lista = res;
+        
+    })
+    
     cdx.pasos = 0;
     
     cdx.ultimaDescarga = 0;
@@ -19,11 +27,32 @@ angular.module("mascotas")
     cdx.generar = function(cantidad, valido){
         
         if(valido){
-            adminService.generar(cantidad);
-                 cdx.pasos = 1;
-            cdx.ultimaDescarga = cantidad;
-            cdx.numero = null;
-            $scope.generarForm.$setPristine();
+            
+            adminService.generar(cantidad)
+                
+                .then(function(res){
+                    
+                
+                    adminService.listaPlacas().then(function(res){
+                        
+                        cdx.lista = res;
+                        cdx.generado = true;
+                    })
+                
+                    cdx.pasos = 1;
+                    cdx.ultimaDescarga = cantidad;
+                    cdx.numero = null;
+                    $scope.generarForm.$setPristine();
+                
+                })
+            
+                .catch(function(res){
+                
+                
+                
+                })
+            
+          
            
            
             

@@ -367,6 +367,7 @@ angular.module("mascotas")
 
 
     }
+    
 
     this.registro = function (datos) {
 
@@ -471,6 +472,30 @@ angular.module("mascotas")
             }
 
         }
+
+    }
+     
+     this.borrarUsuario = function (idUsuario) {
+
+
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.post(apiRootFactory + "usuarios/borrar", {id: idUsuario}).then(function (res) {
+
+            if (res.data.response) {
+
+                defered.resolve(res.data.result);
+
+            } else {
+
+                defered.reject();
+            }
+
+        });
+
+        return promise;
+
 
     }
 
@@ -795,10 +820,6 @@ angular.module("mascotas")
 
         var defered = $q.defer();
         var promise = defered.promise;
-
-        datos.idDueno = usuariosService.autorizado().dueno.idDueno;
-
-
 
         $http.post(apiRootFactory + "mascotas/registro", datos).then(function (res) {
 
@@ -1779,10 +1800,84 @@ angular.module("mascotas")
 
 .service("adminService", ["$http", "$q", "apiRootFactory", "$window", "$rootScope",function($http, $q, apiRootFactory, $window, $rootScope){
     
+    this.cambiarContrasena = function(contrasena, idUsuario){
+        
+        
+         
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.post(apiRootFactory + "usuarios/cambiar-contrasena-admin", {pass: contrasena, id: idUsuario})
+            
+       .then(function (res) {
+
+            if (res.data.response) {
+
+                defered.resolve(res.data.result);
+
+            } else {
+
+                defered.reject();
+            }
+            
+        })
+
+      
+
+        return promise;
+        
+    }
+    
     this.generar = function (cantidad) {
 
-        $window.open(apiRootFactory + "placas/generar/" + cantidad);
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.get(apiRootFactory + "placas/generar/" + cantidad).then(function (res) {
+
+            if (res.data.response) {
+                
+                $window.open(apiRootFactory + "excel/" + res.data.archivo)
+                defered.resolve(res.data.archivo);
+
+            } else {
+
+                defered.reject();
+            }
+
+        })
+
+        return promise;
+        
+        //$window.open(apiRootFactory +);
     }
+    
+    this.listaPlacas = function(){
+        
+        
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.get(apiRootFactory + "placas/excel/lista").then(function (res) {
+
+            if (res.data.response) {
+                
+                defered.resolve(res.data.result);
+
+            } else {
+
+                defered.reject();
+            }
+
+        })
+
+        return promise;
+        
+        
+    }
+    
     
     this.login = function(datos){
         

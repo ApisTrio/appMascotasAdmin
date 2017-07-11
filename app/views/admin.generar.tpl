@@ -37,10 +37,10 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" ng-if="adminGenerar.generado">
 		<div class="col s12 m10 offset-m1 no-padding">
 			<div>
-				<a href="#" style="color: black">Volver a descargar <img src="assets/images/icons/download.png" style="width: 16px;
+				<a ng-href="/apiMascotas/excel/Placas Generadas - {{adminGenerar.lista[0].idExcel}}.xls" style="color: black" download="Placas Generadas - {{adminGenerar.lista[0].idExcel}}.xls">Volver a descargar <img src="assets/images/icons/download.png" style="width: 16px;
     vertical-align: middle; margin-left: 10px"></a>
 			</div>
 		</div>
@@ -49,7 +49,7 @@
 	<div class="row no-margin">
 		
 		<div class="col s12 m10 offset-m1 titulo-admin-2">
-			<p>GHistorial de Placas QR generadas</p>
+			<p>Historial de Placas QR generadas</p>
 		</div>
 
 	</div>
@@ -66,11 +66,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>12/04/17</td>
-						<td>2300</td>
+					<tr ng-repeat="archivo in adminGenerar.lista">
+						<td>{{archivo.fecha}}</td>
+						<td>{{archivo.cantidad}}</td>
 						<td style="text-align: center;">
-							<a href="#">
+							<a ng-href="/apiMascotas/excel/Placas Generadas - {{archivo.idExcel}}.xls" download="Placas Generadas - {{archivo.idExcel}}.xls">
 								<img src="assets/images/icons/download.png" style="width: 16px; vertical-align: middle;">
 							</a>								
 						</td>
