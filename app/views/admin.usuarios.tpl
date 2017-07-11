@@ -187,13 +187,13 @@
 				<tbody>
 
 					<tr ng-repeat-start="registro in adminUsuarios.registros | filter:(adminUsuarios.activo === 'all' ? undefined : { activo: adminUsuarios.activo }) | orderBy:adminUsuarios.ordenPor:adminUsuarios.ordenRevertido">
-						<td class="usuario" rowspan="{{registro.mascotas.length}}"> {{ registro.usuario }} </td>
+						<td class="usuario" rowspan="{{registro.mascotas.length}}" ui-sref="admin.usuariosIndividual({idUsuario: registro.idusuario})" style="cursor: pointer;"> {{ registro.usuario }} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.telefono }} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.emailU }} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.ciudad }}, {{ registro.provincia }}, {{registro.pais}} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.codigo_postal }} </td>
 						
-						<td class="usuario"> {{ registro.mascotas[0].nombre }} </td>
+						<td class="usuario" style="cursor: pointer;" ui-sref="admin.mascota({idPlaca: registro.mascotas[0].placas[0].codigo})"> {{ registro.mascotas[0].nombre }} </td>
 						<td>
 							<span ng-repeat-start="placas in registro.mascotas[0].placas"> {{placas.codigo}} </span> <br ng-repeat-end> 
 						</td>
@@ -205,7 +205,7 @@
 						<td> {{registro.mascotas[0].fecha_nacimiento}} </td>						
 					</tr>
 					<tr ng-repeat-end ng-repeat="mascota in registro.mascotas.slice(1)">
-						<td class="usuario"> {{ mascota.nombre }} </td>
+						<td class="usuario" style="cursor: pointer;" ui-sref="admin.mascota({idPlaca: mascota.placas[0].codigo})"> {{ mascota.nombre }} </td>
 						<td>
 							<span ng-repeat-start="placas in mascota.placas"> {{placas.codigo}} </span> <br ng-repeat-end> 
 						</td>
