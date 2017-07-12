@@ -9,13 +9,8 @@
 
     <div ng-switch-when="1">
         <div class="row">
-            <div class="col s10 offset-s1 m10 offset-m1 negrita white-space-normal">
-                Agrega una nueva placa. Si no tienes una placa puedes comprarla en nuestra <a target="_blank" href="https://www.dinbeat.com/tienda/">tienda</a>.
-            </div>
-        </div>
-        <div class="row">
             <div class="col s11 offset-s1 m7 offset-m1">
-                <div class="campo-formulario">Introduce el número de tu placa *</div>
+                <div class="campo-formulario">Introduce el número de placa *</div>
                 <div class="input-formulario">
                     <div ng-class="{'margin-bottom-30': nuevaPlacaForm.numeroPlaca.$pristine || nuevaPlacaForm.numeroPlaca.$valid}">
                         <input ng-model="adminAgregarPlaca.placa.codigo" ng-class="{'valido': nuevaPlacaForm.numeroPlaca.$valid, 'erroneo': (!nuevaPlacaForm.numeroPlaca.$valid && nuevaPlacaForm.numeroPlaca.$dirty)}" placeholder="Introduce el número de tu placa" type="text" name="numeroPlaca" cdx-validacion data-validacion="placa" data-deseado="false" cdx-validacion-dispo required>
@@ -90,15 +85,17 @@
 
         <div class="row">
             <div class="col s10 offset-s1 center-align">
-                <h4 class="titulo2 negrita interlineado20 c2">Haz activado tu nueva placa</h4>
+                <h4 class="titulo2 negrita interlineado20 c2">Haz activado una nueva placa</h4>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col s10 offset-s1 m8 offset-m2 center-align white-space-normal">
-                ¡Felicidades! Has agregado una nueva placa DinbeatQR. Recibirás un e-mail de confirmación. Puedes ver todos nuestros modelos en nuestra sección de tienda.
+         <div class="col s6 offset-s3 col m4 offset-m4 col l3 offset-l5 botones-formulario">
+                <div class="row">
+                    <div class="col s12 m12 l6" style="margin-bottom: 10px">
+                        <button class="boton-verde" ui-sref="admin.mascota({idPlaca: adminAgregarPlaca.codigo})">VOLVER</button>
+                    </div>
+                </div>
             </div>
-        </div>
+        
     </div>
 </section>
 
