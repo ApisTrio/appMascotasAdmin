@@ -168,7 +168,7 @@
 	<div class="row">
 		
 		<div class="col s11 offset-s1 m10 offset-m1">
-			<table class="table-admin">
+			<table class="table-admin" id="registros">
 				<thead>
 					<tr>
 						<th>Usuario <img ng-click="adminUsuarios.ordenPor = 'usuario'; adminUsuarios.ordenRevertido = !adminUsuarios.ordenRevertido" src="assets/images/icons/orden_lista.png"></th>
@@ -193,18 +193,20 @@
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.ciudad }}, {{ registro.provincia }}, {{registro.pais}} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.codigo_postal }} </td>
 						
-						<td class="usuario" style="cursor: pointer;" ui-sref="admin.mascota({idPlaca: registro.mascotas[0].placas[0].codigo})"> {{ registro.mascotas[0].nombre }} </td>
-						<td>
+						<td ng-if="registro.mascotas.length" class="usuario" style="cursor: pointer;" ui-sref="admin.mascota({idPlaca: registro.mascotas[0].placas[0].codigo})"> {{ registro.mascotas[0].nombre }} </td>
+						<td ng-if="registro.mascotas.length">
 							<span ng-repeat-start="placas in registro.mascotas[0].placas"> {{placas.codigo}} </span> <br ng-repeat-end> 
 						</td>
-						<td style="text-align: center;"> 
+						<td ng-if="registro.mascotas.length" style="text-align: center;"> 
 							<img ng-repeat-start="placa in registro.mascotas[0].placas" src="assets/images/placas/{{placa.forma}}/{{placa.modelo}}" width="40"> <br ng-repeat-end> 
 						</td>
-						<td> {{registro.mascotas[0].especie}} </td>
-						<td> {{registro.mascotas[0].raza}} </td>
-						<td> {{registro.mascotas[0].fecha_nacimiento}} </td>						
+						<td ng-if="registro.mascotas.length"> {{registro.mascotas[0].especie}} </td>
+						<td ng-if="registro.mascotas.length"> {{registro.mascotas[0].raza}} </td>
+						<td ng-if="registro.mascotas.length"> {{registro.mascotas[0].fecha_nacimiento}} </td>
+
+						<td ng-if="!registro.mascotas.length" colspan="6" style="text-align: center;"> No se encontraron mascotas asociadas</td>						
 					</tr>
-					<tr ng-repeat-end ng-repeat="mascota in registro.mascotas.slice(1)">
+					<tr ng-if="registro.mascotas.length" ng-repeat-end ng-repeat="mascota in registro.mascotas.slice(1)">
 						<td class="usuario" style="cursor: pointer;" ui-sref="admin.mascota({idPlaca: mascota.placas[0].codigo})"> {{ mascota.nombre }} </td>
 						<td>
 							<span ng-repeat-start="placas in mascota.placas"> {{placas.codigo}} </span> <br ng-repeat-end> 
@@ -222,6 +224,7 @@
 					</tr>
 
 
+
 				</tbody>
 			</table>
 		</div>
@@ -231,11 +234,8 @@
 	<div class="row">
     	<div class="col s6 offset-s3 col m6 offset-m3 col l4 offset-l4 botones-formulario">
             <div class="row">
-                <div class="col s11 offset-s1 m6 l6" style="margin-bottom: 10px;">
-                    <button class="boton-neutro" ui-sref="perfil.miPerfil">Cancelar</button>
-                </div>
-                <div class="col s11 offset-s1 m6 l6">
-                    <button class="boton-verde">EXPORTAR</button>
+                <div class="col s11 offset-s1 m6 offset-m3 l6 offset-l3">
+                    <button class="boton-verde" ng-class="{'bloqueado' : !adminUsuarios.exportarFin }" ng-click="adminUsuarios.exportar()">EXPORTAR</button>
                 </div>
             </div>
         </div>

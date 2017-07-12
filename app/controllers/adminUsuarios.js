@@ -53,4 +53,28 @@ angular.module("mascotas")
     	return $filter('filter')(cdx.registros, {activo: 0}).length
 
 	}
+
+	cdx.exportarFin = true;
+
+	cdx.exportar = function() {
+
+		if(cdx.exportarFin){ 
+
+			cdx.exportarFin = false;
+
+			var table = angular.element('#registros').html();
+
+				adminService.exportar(table)
+
+			    .then(function (res) {
+
+			    	cdx.exportarFin = true;
+			    
+			    })
+
+		}
+
+	
+
+	}
 }])

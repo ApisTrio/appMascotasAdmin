@@ -1947,7 +1947,7 @@ angular.module("mascotas")
 
         .catch(function (res) {
 
-            defered.reject(res.data.message);
+            defered.reject();
 
         })
 
@@ -1965,6 +1965,44 @@ angular.module("mascotas")
        .then(function (res) {
 
             defered.resolve(res);
+
+        })
+
+        .catch(function (res) {
+
+            defered.reject();
+
+        })
+
+        return promise;
+        
+    }
+
+    this.exportar = function (datos) {
+
+        var i = true;
+
+        var html = datos;
+
+        while (i) {
+
+            html = html.replace('src="a', 'src="https://www.dinbeat.com/qr/a')
+
+
+            if(html.search('src="a') == -1){
+                i = false;
+            }
+        }
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.post(apiRootFactory + "admin/exportar-registros", {datos: html})
+            
+       .then(function (res) {
+
+            $window.open(apiRootFactory  + res.data)
+            defered.resolve(res.data);
 
         })
 
