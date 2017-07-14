@@ -721,7 +721,7 @@ h5{
     text-align: center;
     padding: 30px 0;
     position: absolute;
-    width: 8.3333%;
+    width: 5.3333%;
     bottom: 0;
 }
 
@@ -757,7 +757,6 @@ h5{
 .label-menu {
     text-align: center;
     color: #8084c0;
-    padding: 0 22.5%;
     cursor: pointer;
 }
 
@@ -1483,7 +1482,7 @@ header>div {
 }
 
 .contenedor-logo .logo{
-    padding: 15px;
+    padding: 7px;
 }
 
 .contenedor-logo .logo a img{
