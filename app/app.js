@@ -341,6 +341,13 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
         controller: 'adminGenerarController as adminGenerar'
     })
 
+    .state({
+        name: 'admin.placas',
+        url: '/placas',
+        templateUrl: 'app/views/admin.placas.tpl',
+        controller: 'adminPlacasController as adminPlacas'
+    })
+
     //$locationProvider.html5Mode(true);
 
 

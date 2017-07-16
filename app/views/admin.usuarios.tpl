@@ -186,7 +186,7 @@
 				</thead>
 				<tbody>
 
-					<tr ng-repeat-start="registro in adminUsuarios.registros | filter:(adminUsuarios.activo === 'all' ? undefined : { activo: adminUsuarios.activo }) | orderBy:adminUsuarios.ordenPor:adminUsuarios.ordenRevertido">
+					<tr ng-repeat-start="registro in usuariosFiltrados = ( adminUsuarios.registros | filter:(adminUsuarios.activo === 'all' ? undefined : { activo: adminUsuarios.activo }) ) | orderBy:adminUsuarios.ordenPor:adminUsuarios.ordenRevertido">
 						<td class="usuario" rowspan="{{registro.mascotas.length}}" ui-sref="admin.usuariosIndividual({idUsuario: registro.idusuario})" style="cursor: pointer;"> {{ registro.usuario }} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.telefono }} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.emailU }} </td>

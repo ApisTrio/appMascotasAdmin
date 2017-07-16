@@ -15,7 +15,12 @@ angular.module("mascotas")
         "assets/images/menu-admin-iconos/generar.svg",
         "assets/images/menu-admin-iconos/generar_hover.svg",
         "assets/images/menu-admin-iconos/generar_selected.svg"
-    ];   
+    ];  
+    $scope.iconosPlacas = [
+        "assets/images/menu-admin-iconos/generar.svg",
+        "assets/images/menu-admin-iconos/generar_hover.svg",
+        "assets/images/menu-admin-iconos/generar_selected.svg"
+    ];
 
     $scope.cambiarIcono = function(s, i, iconos){
 

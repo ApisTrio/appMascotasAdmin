@@ -15,13 +15,6 @@
         width: 3.333333% !important;
     }
 
-    .row .menu.col.l1 {
-        width: 5.333333%;
-    }
-    .row .contenedor-admin-interno.col.l11 {
-        width: 94.666667%;
-    }
-
     .menu-perfil.col.l2 {
         width: 11.666667% !important;
     }
@@ -42,13 +35,6 @@
             padding-bottom: 80px;
         }
 
-        .row .menu.col.l1 {
-            width: 5.333333%;
-        }
-        .row .contenedor-admin-interno.col.l11 {
-            width: 94.666667%;
-        }
-
 }
 
 @media (min-width: 1366px) and (max-width: 1439px) {
@@ -56,13 +42,6 @@
             background-size: 100% 100%;
             background-position: 32% 101%;
             padding-bottom: 80px;
-        }
-
-        .row .menu.col.l1 {
-            width: 5.333333%;
-        }
-        .row .contenedor-admin-interno.col.l11 {
-            width: 94.666667%;
         }
 
 }
@@ -73,14 +52,6 @@
             background-position: 32% 101%;
             padding-bottom: 80px;
         }
-
-        .row .menu.col.l1 {
-            width: 5.333333%;
-        }
-        .row .contenedor-admin-interno.col.l11 {
-            width: 94.666667%;
-        }
-
 
 }
 
@@ -98,13 +69,6 @@
 
         .colapso-menu img {
             margin-left: 6px;
-        }
-
-        .row .menu.col.l1 {
-            width: 5.333333%;
-        }
-        .row .contenedor-admin-interno.col.l11 {
-            width: 94.666667%;
         }
 
 }
@@ -130,13 +94,6 @@
         background-position: 48% 48%;
     }
 
-    .row .menu.col.l1 {
-        width: 5.333333%;
-    }
-    .row .contenedor-admin-interno.col.l11 {
-        width: 94.666667%;
-    }
-
 }
 
 /* Portrait */
@@ -148,13 +105,6 @@
         
     }
 
-    .row .menu.col.l1 {
-        width: 5.333333%;
-    }
-    .row .contenedor-admin-interno.col.l11 {
-        width: 94.666667%;
-    }
-
 }
 
 /* Landscape */
@@ -164,14 +114,6 @@
         background-size: 128% 67%;
         background-position: 48% 48%;
     }
-
-    .row .menu.col.l1 {
-        width: 5.333333%;
-    }
-    .row .contenedor-admin-interno.col.l11 {
-        width: 94.666667%;
-    }
-
 
 }
 
