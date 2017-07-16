@@ -1802,8 +1802,6 @@ angular.module("mascotas")
     
     this.cambiarContrasena = function(contrasena, idUsuario){
         
-        
-         
         var defered = $q.defer();
         var promise = defered.promise;
 
@@ -1874,10 +1872,8 @@ angular.module("mascotas")
         })
 
         return promise;
-        
-        
+           
     }
-    
     
     this.login = function(datos){
         
@@ -2021,6 +2017,37 @@ angular.module("mascotas")
         $rootScope.objetoToken = false;
         $window.localStorage.removeItem('cdxTokenAdmin');
 
+    }
+    
+    this.desvincular = function(idPlaca){
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.post(apiRootFactory + "placas/borrar-bloquear", {idPlaca: idPlaca})
+            
+       .then(function (res) {
+
+           if (res.data.response) {
+                
+                defered.resolve();
+
+            } else {
+
+                defered.reject();
+            }
+
+        })
+
+        .catch(function (res) {
+
+            
+            defered.reject();
+
+        })
+
+        return promise;
+        
     }
     
     
