@@ -26,7 +26,7 @@
                     Usuarios
                 </div>
             </div>
-            <div class="menu-item last" ui-sref="admin.generar" ui-sref-opts="{reload: true}">
+            <div class="menu-item" ui-sref="admin.generar" ui-sref-opts="{reload: true}">
                 <div class="icono-menu">
                     <img ng-src="{{ iconoGenerar }}" ng-mouseover="iconoGenerar = iconosGenerar[1]" ng-mouseleave="iconoGenerar = cambiarIcono(seleccionado, 2, iconosGenerar)">
                 </div>
@@ -35,6 +35,14 @@
                 </div>
             </div>
 
+            <div class="menu-item last" ui-sref="admin.placas" ui-sref-opts="{reload: true}">
+                <div class="icono-menu">
+                    <img ng-src="{{ iconoPlacas }}" ng-mouseover="iconoPlacas = iconosPlacas[1]" ng-mouseleave="iconoPlacas = cambiarIcono(seleccionado, 2, iconosPlacas)">
+                </div>
+                <div class="label-menu" ng-class="{'selected-menu-item' : seleccionado == 2}">
+                    Placas
+                </div>
+            </div>
 
 
         </div><!--

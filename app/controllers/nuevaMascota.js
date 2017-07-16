@@ -2,10 +2,16 @@ angular.module("mascotas")
 
 .controller("nuevaMascotaController", ["especiesService", "razasService", "mascotasService", "mailService", "$mdDialog", "$scope", "$stateParams", "idValido", function (especiesService, razasService, mascotasService, mailService, $mdDialog, $scope, $stateParams, idValido) {
     
-    
-    
- var cdx = this;
- 
+    var cdx = this;
+     
+    if ($scope.$parent.seleccionado != 1) {
+
+        $scope.$parent.seleccionado = 1;
+
+        $scope.$parent.iconoUsuarios = $scope.$parent.cambiarIcono($scope.$parent.seleccionado, 1, $scope.$parent.iconosUsuarios);
+        $scope.$parent.iconoGenerar = $scope.$parent.cambiarIcono($scope.$parent.seleccionado, 2, $scope.$parent.iconosGenerar);
+        $scope.$parent.iconoPlacas = $scope.$parent.cambiarIcono($scope.$parent.seleccionado, 2, $scope.$parent.iconosPlacas);
+    }
     
     cdx.idUsuario = $stateParams.idUsuario;
     

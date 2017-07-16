@@ -346,6 +346,14 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
         controller: 'adminGenerarController as adminGenerar'
     })
 
+    .state({
+        name: 'admin.placas',
+        url: '/placas',
+        templateUrl: 'app/views/admin.placas.tpl',
+        controller: 'adminPlacasController as adminPlacas'
+    })
+
+   
 }])
 
 .run(["$rootScope", "$state", "$anchorScroll", function ($rootScope, $state, $anchorScroll) {

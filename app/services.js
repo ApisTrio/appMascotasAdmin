@@ -2012,6 +2012,29 @@ angular.module("mascotas")
         
     }
 
+    this.placas = function () {
+
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.get(apiRootFactory + "placas/lista-completa")
+            
+       .then(function (res) {
+
+            defered.resolve(res);
+
+        })
+
+        .catch(function (res) {
+
+            defered.reject();
+
+        })
+
+        return promise;
+
+    }
+
     this.salir = function () {
 
         $rootScope.objetoToken = false;
