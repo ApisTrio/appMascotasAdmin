@@ -38,10 +38,10 @@
 
 					<tr ng-repeat="placa in placasFiltradas = (adminPlacas.placas | filter:(adminPlacas.activo === 'all' ? undefined : adminPlacas.activo ) ) | orderBy:adminPlacas.ordenPor:adminPlacas.ordenRevertido | limitTo: 10 : adminPlacas.saltoPlacas">
 						<td class="usuario"> {{ placa.codigo }} </td>
-						<td ng-if="adminPlacas.seleccion != 'inactivas'" style="text-align: center;"> <img ng-if="placa.modelo" src="assets/images/placas/{{placa.forma}}/{{placa.modelo}}" width="40"> </td>
-						<td ng-if="adminPlacas.seleccion != 'inactivas'"> {{ placa.forma | uppercase }} </td>
+						<td ng-if="adminPlacas.seleccion != 'inactivas'" style="text-align: center;"> <img ng-if="placa.modelo" src="assets/images/placas/{{placa.forma}}/{{placa.modelo}}" width="40"> <div ng-if="!placa.modelo">N/A</div> </td>
+						<td ng-if="adminPlacas.seleccion != 'inactivas'"> {{ (placa.forma | uppercase) || "N/A" }} </td>
 						<td  ng-if="adminPlacas.seleccion == 'all'"> <span ng-if="placa.bloqueado || placa.borrado"> NO </span> <span ng-if="!placa.bloqueado && !placa.borrado"> SI </span> </td>
-						<td ng-if="adminPlacas.seleccion == 'all' || adminPlacas.seleccion == 'eliminadas'"> {{ placa.borrado }} </td>						
+						<td ng-if="adminPlacas.seleccion == 'all' || adminPlacas.seleccion == 'eliminadas'"> {{ placa.borrado || "N/A" }} </td>						
 					</tr>
 
 					<tr ng-if="!adminPlacas.placas.length">
