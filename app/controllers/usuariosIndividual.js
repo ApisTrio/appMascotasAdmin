@@ -1,9 +1,9 @@
 angular.module("mascotas")
 
 .controller("usuariosIndividualController", ["$scope", "adminService", "usuariosService", "idValido", "paisesValue", "$filter", "mascotasService", "apiConstant", function ($scope, adminService, usuariosService, idValido, paisesValue, $filter, mascotasService, apiConstant) {
-    
+
     var cdx = this;
-    
+
     if ($scope.$parent.seleccionado != 1) {
 
         $scope.$parent.seleccionado = 1;
@@ -14,30 +14,28 @@ angular.module("mascotas")
     }
 
     cdx.datos = idValido;
-    
+
     cdx.apiDir = apiConstant;
-    
+
     cdx.mascotas = [];
-    
-    mascotasService.mascotasDueno(cdx.datos.dueno.idDueno).then(function(res){
-        
+
+    mascotasService.mascotasDueno(cdx.datos.dueno.idDueno).then(function (res) {
+
         cdx.mascotas = res;
-        
-        
+
+
     })
-    
+
     cdx.paises = paisesValue;
 
     cdx.editarComenzar = function (datosOriginales) {
 
         if (datosOriginales.dueno.nacimiento) {
             var nacimiento = new Date(datosOriginales.dueno.nacimiento.split("/")[2], datosOriginales.dueno.nacimiento.split("/")[1] - 1, datosOriginales.dueno.nacimiento.split("/")[0]);
-        }
-        
-        else{
-            
+        } else {
+
             var nacimiento = null;
-            
+
         }
 
         cdx.datosEspejo = {
@@ -93,19 +91,19 @@ angular.module("mascotas")
         cdx.pasos = 1;
     }
 
-    cdx.cambiarPassCancelar = function(){
-        
+    cdx.cambiarPassCancelar = function () {
+
         cdx.pass = null;
         cdx.passVerificar = null;
         cdx.pasosPass = 1;
-        
+
     }
-    
-    cdx.cambiarPass = function(contrasena, idUsuario, valido){
-        
-        if(valido){
-            
-            adminService.cambiarContrasena(contrasena, idUsuario).then(function(res){
+
+    cdx.cambiarPass = function (contrasena, idUsuario, valido) {
+
+        if (valido) {
+
+            adminService.cambiarContrasena(contrasena, idUsuario).then(function (res) {
 
                 cdx.pass = null;
                 cdx.passVerificar = null;
@@ -114,7 +112,7 @@ angular.module("mascotas")
             })
         }
     }
-    
+
 
     //datos para los datepickers
     cdx.hoy = new Date();
@@ -132,38 +130,68 @@ angular.module("mascotas")
         max: (new Date(cdx.hoy.getTime() + (1000 * 60 * 60 * 24))).toISOString()
 
     }
-    
-    
-    cdx.uppercase = function(palabra){
-        
+
+
+    cdx.uppercase = function (palabra) {
+
         return $filter('uppercase')(palabra) == 'ELIMINAR';
-        
+
     }
-    
-    cdx.eliminarCancelar = function(){
-        
+
+    cdx.eliminarCancelar = function () {
+
         cdx.eliminar = null;
         cdx.eliminarPasos = 1;
     }
 
-    cdx.eliminarConfirmar = function(confirmado, idUsuario){
-        
-        if(confirmado){
-            
-            
-            adminService.borrarUsuario(idUsuario).then(function(res){
-                
+    cdx.eliminarConfirmar = function (confirmado, idUsuario) {
+
+        if (confirmado) {
+
+
+            adminService.borrarUsuario(idUsuario).then(function (res) {
+
                 cdx.eliminarCompleto = true;
-                
-            }).catch(function(res){
-                
+
+            }).catch(function (res) {
+
                 console.log("fallo");
-                
+
             })
-            
+
         }
-        
-        
+
+
     }
-    
+
+
+    cdx.pasosEmail = 1;
+
+
+    cdx.cambiarEmailCancelar = function () {
+
+        cdx.pasosEmail = 1;
+        cdx.email = null;
+    }
+
+    cdx.cambiarEmail = function (email, idUsuario, valido) {
+        
+        if (valido) {
+            adminService.cambiarEmail(email, idUsuario).then(function (res) {
+
+                cdx.datos.usuario.emailU = email;
+                cdx.pasosEmail = 1;
+
+            })
+
+            .catch(function (res) {
+
+                cdx.pasosEmail = 1;
+                cdx.email = null;
+
+            })
+        }
+
+    }
+
 }])

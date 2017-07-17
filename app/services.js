@@ -2061,4 +2061,38 @@ angular.module("mascotas")
     }
     
     
+    this.cambiarEmail = function(email, idUsuario){
+        
+        
+         var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.post(apiRootFactory + "usuarios/cambiar-email", {email: email, id: idUsuario})
+            
+       .then(function (res) {
+
+           if (res.data.response) {
+                
+                defered.resolve();
+
+            } else {
+
+                defered.reject();
+            }
+
+        })
+
+        .catch(function (res) {
+
+            
+            defered.reject();
+
+        })
+
+        return promise;
+        
+        
+    }
+    
+    
 }])

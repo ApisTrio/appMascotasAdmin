@@ -12,29 +12,64 @@
         </div>
     </div>
 
-    <div class="row"  ng-if="!usuariosIndividual.eliminarCompleto">
+    <div class="row" ng-if="!usuariosIndividual.eliminarCompleto">
         <div class="col s12 m4 offset-m1">
             <div class="titulo-info c2">Información Básica</div>
         </div>
     </div>
+    <div ng-form="cambiarEmailForm">
+        <div class="row" ng-if="!usuariosIndividual.eliminarCompleto">
+            <div class="col s12 m4 offset-m1">
+                <div class="titulo-info">Nombre de usuario</div>
+                <div class="contenido-info white-space-normal">{{usuariosIndividual.datos.usuario.usuario}}</div>
+                <div class="divider" ng-show="usuariosIndividual.pasos == 1"></div>
+            </div>
 
-    <div class="row"  ng-if="!usuariosIndividual.eliminarCompleto">
-        <div class="col s12 m4 offset-m1">
-            <div class="titulo-info">E-mail</div>
-            <div class="contenido-info white-space-normal">{{usuariosIndividual.datos.usuario.emailU}}</div>
-            <div class="divider" ng-show="usuariosIndividual.pasos == 1"></div>
+            <div class="col s12 m4 offset-m2" ng-if="usuariosIndividual.pasosEmail == 1">
+                <div class="titulo-info">E-mail</div>
+                <div class="contenido-info white-space-normal">{{usuariosIndividual.datos.usuario.emailU}}</div>
+                <div class="divider" ng-show="usuariosIndividual.pasos == 1"></div>
+            </div>
+
+            <div class="col s12 m4 offset-m2" ng-if="usuariosIndividual.pasosEmail == 2">
+                <div class="campo-formulario">E-mail *</div>
+                <div class="input-formulario">
+                    <div ng-class="{'margin-bottom-30': cambiarEmailForm.email.$pristine || cambiarEmailForm.email.$valid}">
+                        <input ng-model="usuariosIndividual.email" ng-class="{'valido': cambiarEmailForm.email.$valid, 'erroneo': (!cambiarEmailForm.email.$valid)}" placeholder="E-mail" type="email" name="email" cdx-validacion data-validacion="emailU" data-deseado="false" required>
+                        <cdx-validez data-validez="cambiarEmailForm.email.$valid" data-mostrar="true"></cdx-validez>
+                    </div>
+                    <div ng-messages="cambiarEmailForm.email.$error" ng-show="cambiarEmailForm.email.$dirty">
+                        <div ng-message="required">Este campo es requerido.</div>
+                        <div ng-message="email">Debe ser un E-mail valido.</div>
+                        <div ng-message="emailU">El E-mail se encuentra en uso.</div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-        <div class="col s12 m4 offset-m2">
-            <div class="titulo-info">Nombre de usuario</div>
-            <div class="contenido-info white-space-normal">{{usuariosIndividual.datos.usuario.usuario}}</div>
-            <div class="divider" ng-show="usuariosIndividual.pasos == 1"></div>
+        <div class="row" ng-if="!usuariosIndividual.eliminarCompleto && usuariosIndividual.pasosEmail == 2">
+            <div class="col s6 offset-s3 col m4 offset-m4 col l4 offset-l4 botones-formulario">
+                <div class="row">
+                    <div class="col s12 m12 l6" style="margin-bottom: 10px">
+                        <button class="boton-neutro" ng-click="usuariosIndividual.cambiarEmailCancelar()">Cancelar</button>
+                    </div>
+                    <div class="col s12 m12 l6">
+                        <button class="boton-verde" ng-click="usuariosIndividual.cambiarEmail(usuariosIndividual.email, usuariosIndividual.datos.usuario.idUsuario, cambiarEmailForm.$valid)" ng-class="{'bloqueado' : !cambiarEmailForm.$valid }">GUARDAR</button>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
+
     </div>
 
-    <div class="col s6 offset-s3 col m4 offset-m4 col l3 offset-l5 botones-formulario" ng-if="usuariosIndividual.pasosPass == 1 &&  !usuariosIndividual.eliminarCompleto">
+
+    <div class="col s6 offset-s3 col m4 offset-m4 col l3 offset-l5 botones-formulario" ng-if="!usuariosIndividual.eliminarCompleto && usuariosIndividual.pasosEmail == 1">
         <div class="row">
             <div class="col s12 m12 l6" style="margin-bottom: 10px">
-                <button class="boton-verde-negativo" ng-click="usuariosIndividual.pasosPass = 2">EDITAR</button>
+                <button class="boton-verde-negativo" ng-click="usuariosIndividual.pasosEmail = 2;">CORREO</button>
             </div>
         </div>
     </div>
@@ -90,6 +125,17 @@
         </div>
 
     </div>
+
+
+
+    <div class="col s6 offset-s3 col m4 offset-m4 col l3 offset-l5 botones-formulario" ng-if="usuariosIndividual.pasosPass == 1 &&  !usuariosIndividual.eliminarCompleto">
+        <div class="row">
+            <div class="col s12 m12 l6" style="margin-bottom: 10px">
+                <button class="boton-verde-negativo" ng-click="usuariosIndividual.pasosPass = 2">CONTRASEÑA</button>
+            </div>
+        </div>
+    </div>
+
 
 
 </section>
@@ -348,7 +394,7 @@
     </div>
 
 </section>
-<section  ng-if="!usuariosIndividual.eliminarCompleto">
+<section ng-if="!usuariosIndividual.eliminarCompleto">
     <div class="row">
         <div class="col s10 offset-s1">
             <div class="campo-formulario">Mascotas Asociadas</div>
@@ -391,14 +437,14 @@
     <div class="row" ng-switch-when="2">
         <div class="row">
             <div class="col s10 offset-s1 center-align">
-                Se eliminará el usuario {{usuariosIndividual.datos.usuario.usuario}}, para conﬁrmar escribe la palabra ELIMINAR 
+                Se eliminará el usuario {{usuariosIndividual.datos.usuario.usuario}}, para conﬁrmar escribe la palabra ELIMINAR
             </div>
         </div>
         <div class="row">
 
             <div class="col s10 offset-s1 m4 offset-m4 l4 offset-l4">
                 <div class="input-formulario">
-                    <input ng-model="usuariosIndividual.eliminar" placeholder="ELIMINAR" type="text"  style="width: 100%">
+                    <input ng-model="usuariosIndividual.eliminar" placeholder="ELIMINAR" type="text" style="width: 100%">
                 </div>
             </div>
         </div>
@@ -416,15 +462,15 @@
         </div>
     </div>
 </section>
-<section  ng-if="usuariosIndividual.eliminarCompleto">
-<div class="row">
-            <div class="col s10 offset-s1 center-align">
-                <img src="assets/images/forms/Confirm.png">
-            </div>
+<section ng-if="usuariosIndividual.eliminarCompleto">
+    <div class="row">
+        <div class="col s10 offset-s1 center-align">
+            <img src="assets/images/forms/Confirm.png">
         </div>
-        <div class="row">
-            <div class="col s10 offset-s1 center-align">
-                <h4 class="titulo2 negrita interlineado20 c2">Hemos eliminado al usuario {{usuariosIndividual.datos.usuario.usuario}}</h4>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col s10 offset-s1 center-align">
+            <h4 class="titulo2 negrita interlineado20 c2">Hemos eliminado al usuario {{usuariosIndividual.datos.usuario.usuario}}</h4>
         </div>
+    </div>
 </section>
