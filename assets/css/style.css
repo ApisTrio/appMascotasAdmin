@@ -1637,3 +1637,30 @@ header .contenedor-navbar .login-contenedor {
     float: left;
     margin-bottom: 8px;
 }
+
+   
+.flechas-slider{
+    
+    vertical-align: middle;
+    height: 15px;
+    cursor: pointer;
+    
+}
+
+.flechas-slider:focus{
+    
+    outline: none;
+    
+}
+
+.flechas-slider:first-child{
+    
+    margin-right: 5px;
+    
+}
+
+.flechas-slider:last-child{
+    
+    
+    margin-left: 5px;
+}

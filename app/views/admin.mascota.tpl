@@ -42,12 +42,14 @@
 
         <div class="col s12 m12 l6 offset-l3 center-align">
             <div class="placas-mascota">
+                <img class="flechas-slider" src="assets/images/forms/left.png" ng-if="adminMascota.datos.placas.length > 3 && adminMascota.salto"  ng-click="adminMascota.salto = adminMascota.salto - 1">
                 <div class="placa-individual" ng-repeat-start="placa in adminMascota.datos.placas | limitTo:3">
                     <img ng-src="assets/images/placas/{{placa.forma}}/{{placa.modelo}}"> {{placa.codigo}}
                     <div class="eliminar-placa-boton" ng-click="adminMascota.mostrarModal(placa, placa)" ng-if="adminMascota.datos.placas.length > 1">x</div>
                 </div>
 
                 <div class="divisor-placas" ng-show="!$last" ng-repeat-end></div>
+                <img class="flechas-slider" src="assets/images/forms/right.png"  ng-if="adminMascota.datos.placas.length > 3 && ((adminMascota.salto + 3) < adminMascota.datos.placas.length)" ng-click="adminMascota.salto = adminMascota.salto + 1">
             </div>
         </div>
         <div class="col s12 m12 l3 center-align">
@@ -57,14 +59,14 @@
         </div>
     </div>
 
-    <div class="row  no-margin-bottom c2 negrita" ng-if="(adminMascota.datos.basico.perdida && !adminMascota.datos.basico.encontrado)">
+    <div class="row  no-margin-bottom c2 negrita" ng-if="(adminMascota.datos.basico.perdida && !adminMascota.datos.basico.encontrado) && !adminMascota.eliminarCompleto">
         <div class="col s12 center-align">
             <div class="desactivar-alarma-perfil white-space-normal" ui-sref="admin.desactivarAlerta({idPlaca: adminMascota.datos.placas[0].codigo})">
                 <img src="assets/images/icons/alerta.png"> Desactivar alerta de mascota perdida
             </div>
         </div>
     </div>
-    <div class="row  no-margin-bottom c2 negrita" ng-if="(!adminMascota.datos.basico.perdida && !adminMascota.datos.basico.encontrado) || (adminMascota.datos.basico.perdida && adminMascota.datos.basico.encontrado)">
+    <div class="row  no-margin-bottom c2 negrita" ng-if="((!adminMascota.datos.basico.perdida && !adminMascota.datos.basico.encontrado) || (adminMascota.datos.basico.perdida && adminMascota.datos.basico.encontrado)) && !adminMascota.eliminarCompleto">
         <div class="col s12 center-align">
             <div class="desactivar-alarma-perfil white-space-normal" ui-sref="admin.activarAlerta({idPlaca: adminMascota.datos.placas[0].codigo})">
                 <img src="assets/images/icons/alerta.png"> Activar alerta de mascota perdida

@@ -100,12 +100,12 @@
 			<div class="col s11 offset-s1 m2">
 				<div class="campo-formulario-admin">Perdido:</div>
 				<div style="padding-top: 5px;">
-	                <input ng-model="adminUsuarios.datos.perdida" value="" type="radio" class="with-gap radio-green" id="forma_placa" name="forma_placa" checked="checked"/>
-	                <label for="forma_placa">Todas</label>
-	                <input ng-model="adminUsuarios.datos.perdida" value="encontradas" type="radio" class="with-gap radio-green" id="forma_placa_redonda" name="forma_placa">
-	                <label for="forma_placa_redonda">Encontradas</label>
-	                <input ng-model="adminUsuarios.datos.perdida" value="perdidas" type="radio" class="with-gap radio-green" id="forma_placa_pajarito" name="forma_placa"/>
-	                <label for="forma_placa_pajarito">Perdidas</label>
+	                <input ng-model="adminUsuarios.datos.perdida" type="radio" class="with-gap radio-green" id="perdido_todas" name="perdido" checked="checked"/>
+	                <label for="perdido_todas">Todas</label>
+	                <input ng-model="adminUsuarios.datos.perdida" value="encontradas" type="radio" class="with-gap radio-green" id="perdido_encontradas" name="perdido">
+	                <label for="perdido_encontradas">Encontradas</label>
+	                <input ng-model="adminUsuarios.datos.perdida" value="perdidas" type="radio" class="with-gap radio-green" id="perdido_perdido" name="perdido"/>
+	                <label for="perdido_perdido">Perdidas</label>
 	            </div>
 			</div>
 
@@ -134,7 +134,7 @@
 			<div class="col s11 offset-s1 m2">
 				<div class="campo-formulario-admin">Forma placa:</div>
 				<div style="padding-top: 5px;">
-	                <input ng-model="adminUsuarios.datos.forma" value="" type="radio" class="with-gap radio-green" id="forma_placa" name="forma_placa" checked="checked"/>
+	                <input ng-model="adminUsuarios.datos.forma" type="radio" class="with-gap radio-green" id="forma_placa" name="forma_placa" checked="checked"/>
 	                <label for="forma_placa">Todas</label>
 	                <input ng-model="adminUsuarios.datos.forma" value="redonda" type="radio" class="with-gap radio-green" id="forma_placa_redonda" name="forma_placa">
 	                <label for="forma_placa_redonda">Redonda</label>

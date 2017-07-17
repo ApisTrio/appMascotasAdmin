@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="menu-item last" ui-sref="admin.placas" ui-sref-opts="{reload: true}">
+            <div class="menu-item" ui-sref="admin.placas" ui-sref-opts="{reload: true}">
                 <div class="icono-menu">
                     <img ng-src="{{ iconoPlacas }}" ng-mouseover="iconoPlacas = iconosPlacas[1]" ng-mouseleave="iconoPlacas = cambiarIcono(seleccionado, 3, iconosPlacas)">
                 </div>
@@ -43,6 +43,17 @@
                     Placas
                 </div>
             </div>
+            
+            <div class="menu-item last" ui-sref="admin.placaDesvincular" ui-sref-opts="{reload: true}">
+                <div class="icono-menu">
+                    <img ng-src="{{ iconoDesvincular }}" ng-mouseover="iconosDesvincular = iconosDesvincular[1]" ng-mouseleave="iconosDesvincular = cambiarIcono(seleccionado, 4, iconosDesvincular)">
+                </div>
+                <div class="label-menu" ng-class="{'selected-menu-item' : seleccionado == 4}">
+                    Placas
+                </div>
+            </div>
+            
+            
 
 
         </div><!--
