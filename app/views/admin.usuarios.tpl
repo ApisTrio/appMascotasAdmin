@@ -99,7 +99,14 @@
 
 			<div class="col s11 offset-s1 m2">
 				<div class="campo-formulario-admin">Perdido:</div>
-	        	<switch id="enabled" name="enabled" ng-model="adminUsuarios.datos.perdida" class="white"></switch>
+				<div style="padding-top: 5px;">
+	                <input ng-model="adminUsuarios.datos.perdida" value="" type="radio" class="with-gap radio-green" id="forma_placa" name="forma_placa" checked="checked"/>
+	                <label for="forma_placa">Todas</label>
+	                <input ng-model="adminUsuarios.datos.perdida" value="encontradas" type="radio" class="with-gap radio-green" id="forma_placa_redonda" name="forma_placa">
+	                <label for="forma_placa_redonda">Encontradas</label>
+	                <input ng-model="adminUsuarios.datos.perdida" value="perdidas" type="radio" class="with-gap radio-green" id="forma_placa_pajarito" name="forma_placa"/>
+	                <label for="forma_placa_pajarito">Perdidas</label>
+	            </div>
 			</div>
 
 		</div>
@@ -127,7 +134,9 @@
 			<div class="col s11 offset-s1 m2">
 				<div class="campo-formulario-admin">Forma placa:</div>
 				<div style="padding-top: 5px;">
-	                <input ng-model="adminUsuarios.datos.forma" value="redonda" type="radio" class="with-gap radio-green" id="forma_placa_redonda" name="forma_placa" checked="checked"/>
+	                <input ng-model="adminUsuarios.datos.forma" value="" type="radio" class="with-gap radio-green" id="forma_placa" name="forma_placa" checked="checked"/>
+	                <label for="forma_placa">Todas</label>
+	                <input ng-model="adminUsuarios.datos.forma" value="redonda" type="radio" class="with-gap radio-green" id="forma_placa_redonda" name="forma_placa">
 	                <label for="forma_placa_redonda">Redonda</label>
 	                <input ng-model="adminUsuarios.datos.forma" value="pajarita" type="radio" class="with-gap radio-green" id="forma_placa_pajarito" name="forma_placa"/>
 	                <label for="forma_placa_pajarito">Pajarita</label>
@@ -161,7 +170,7 @@
 
 	<div class="row">
 		
-		<div class="col s11 offset-s1 m5 offset-m7 filtros-tabla"><span ng-click="adminUsuarios.activo = 'all'; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == 'all'}">Ver todos ({{adminUsuarios.registros.length}})</span> <span ng-click="adminUsuarios.activo = 1; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == 1}">Ver activos ({{adminUsuarios.registrosActivos()}})</span> <span ng-click="adminUsuarios.activo = 0; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == null}">Ver inactivos ({{adminUsuarios.registrosInactivos()}})</span></div>
+		<div class="col s11 offset-s1 m5 offset-m7 filtros-tabla"><span ng-click="adminUsuarios.activo = 'all'; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == 'all'}">Ver todos ({{adminUsuarios.registros.length}})</span> <span ng-click="adminUsuarios.activo = 1; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == 1}">Ver activos ({{adminUsuarios.registrosActivos()}})</span> <span ng-click="adminUsuarios.activo = 0; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == 0}">Ver inactivos ({{adminUsuarios.registrosInactivos()}})</span></div>
 
 	</div>
 
