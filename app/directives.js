@@ -130,32 +130,28 @@ angular.module("mascotas")
         templateUrl: 'cdx.modelos.html',
         controller: ["$scope", "modelosService", "apiConstant", "isMobile", function ($scope, modelosService, apiConstant, isMobile) {
 
-            $scope.limite = function(){
-                
-                if(isMobile.phone){
-                    
+            $scope.limite = function () {
+
+                if (isMobile.phone) {
+
                     return 3;
-                    
-                }
-                
-                else if(isMobile.tablet){
-                    
+
+                } else if (isMobile.tablet) {
+
                     return 4;
-                }
-                
-                else{
-                    
+                } else {
+
                     return 6;
-                    
+
                 }
-                
+
             }
-            
+
             $scope.modelos = {
                 pajarita: [],
                 redonda: []
             }
-            
+
             $scope.apiDir = apiConstant;
 
             angular.forEach($scope.modelos, function (valor, llave) {
@@ -195,13 +191,13 @@ angular.module("mascotas")
 
             }
 
-         
+
             $scope.avanzar = function (salto, accion, cantidad, resultante, esperado) {
-                
+
                 if (accion) {
-                    
-                    
-                   
+
+
+
                     if (salto < cantidad && resultante == esperado) {
 
 
@@ -270,7 +266,7 @@ angular.module("mascotas")
                     })
 
                     ngModel.$setViewValue(null)
-                    
+
                     scope.cdx.salto = 0;
 
                 }
@@ -278,7 +274,7 @@ angular.module("mascotas")
 
             })
 
-            
+
         }
     }
 }])
@@ -399,6 +395,8 @@ angular.module("mascotas")
 
             ctrl.$asyncValidators.disponible = function (modelValor, viewValor) {
 
+                console.log(attributes.dispoInverso)
+
                 var defered = $q.defer();
                 var promise = defered.promise;
 
@@ -408,14 +406,32 @@ angular.module("mascotas")
                 }
 
                 validarService.placaDisponible(modelValor).then(function (res) {
+                    if (attributes.dispoInverso) {
+                       
+                        defered.reject();
+
+                    } else {
+
+                        defered.resolve();
+                    }
 
 
-                    defered.resolve();
                 })
 
                 .catch(function (res) {
 
-                    defered.reject();
+                    if (attributes.dispoInverso) {
+                        
+                        defered.resolve("hola");
+                        
+                        
+                    } else {
+                        
+                        defered.reject();
+
+                        
+                    }
+
                 })
 
 

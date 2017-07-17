@@ -332,7 +332,12 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
         }
     })
     
-    
+    .state({
+        name: 'admin.placaDesvincular',
+        url: '/placa-desvincular',
+        templateUrl: 'app/views/admin.desvincularPlaca.tpl',
+        controller: 'desvincularPlacaController as desvincularPlaca'
+    })
 
     .state({
         name: 'admin.generar',
@@ -348,9 +353,7 @@ angular.module("mascotas", ["ngMessages", "ui.router", "ngAnimate", "ngMaterial"
         controller: 'adminPlacasController as adminPlacas'
     })
 
-    //$locationProvider.html5Mode(true);
-
-
+   
 }])
 
 .run(["$rootScope", "$state", "$anchorScroll", function ($rootScope, $state, $anchorScroll) {
