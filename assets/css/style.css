@@ -720,6 +720,19 @@ h5{
     width: 94.6666666667%;
 }
 
+p.flecha {
+    display: inline-block;
+    margin: 0;
+    font-size: 20px;
+    transform: scaleY(2.3);
+    color: gray;
+    margin: 0 10px;
+}
+
+div.flechas {
+    text-align: right;
+}
+
 
 .menu-item {
     text-align: center;

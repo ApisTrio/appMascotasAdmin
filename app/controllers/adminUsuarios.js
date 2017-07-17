@@ -63,19 +63,45 @@ angular.module("mascotas")
 
 			cdx.exportarFin = false;
 
-			var table = angular.element('#registros').html();
+			adminService.exportar($scope.usuariosFiltrados)
 
-				adminService.exportar(table)
+		    .then(function (res) {
 
-			    .then(function (res) {
-
-			    	cdx.exportarFin = true;
-			    
-			    })
+		    	cdx.exportarFin = true;
+		    
+		    })
 
 		}
 
 	
+
+	}
+
+cdx.saltoUsuarios = 0;
+
+
+	cdx.avanzar = function(salto, accion, cantidad){
+
+		
+
+
+
+		if(cantidad > 0){
+
+			if(accion){
+
+				cdx.saltoUsuarios = salto + 10;
+
+			} else{
+				if(salto > 0){
+					cdx.saltoUsuarios = salto - 10;
+
+				}
+				
+
+			}	
+
+		}
 
 	}
 }])

@@ -36,7 +36,7 @@
 				</thead>
 				<tbody>
 
-					<tr ng-repeat="placa in placasFiltradas = (adminPlacas.placas | filter:(adminPlacas.activo === 'all' ? undefined : adminPlacas.activo ) ) | orderBy:adminPlacas.ordenPor:adminPlacas.ordenRevertido">
+					<tr ng-repeat="placa in placasFiltradas = (adminPlacas.placas | filter:(adminPlacas.activo === 'all' ? undefined : adminPlacas.activo ) ) | orderBy:adminPlacas.ordenPor:adminPlacas.ordenRevertido | limitTo: 10 : adminPlacas.saltoPlacas">
 						<td class="usuario"> {{ placa.codigo }} </td>
 						<td ng-if="adminPlacas.seleccion != 'inactivas'" style="text-align: center;"> <img ng-if="placa.modelo" src="assets/images/placas/{{placa.forma}}/{{placa.modelo}}" width="40"> </td>
 						<td ng-if="adminPlacas.seleccion != 'inactivas'"> {{ placa.forma | uppercase }} </td>
@@ -53,6 +53,15 @@
 		</div>
 
 	</div>
+
+	<div class="row">
+		
+		<div class="col s11 offset-s1 m10 offset-m1 flechas">
+			<p class="flecha" id="izq" ng-click="adminPlacas.avanzar(adminPlacas.saltoPlacas, false, (placasFiltradas | limitTo: 10 : adminPlacas.saltoPlacas - 10).length)" style="cursor: pointer"><</p> <p class="flecha" id="der" ng-click="adminPlacas.avanzar(adminPlacas.saltoPlacas, true, (placasFiltradas | limitTo: 10 : adminPlacas.saltoPlacas + 10).length)" style="cursor: pointer">></p>
+		</div>
+
+	</div>
+	
 
 	<div class="row">
     	<div class="col s6 offset-s3 col m6 offset-m3 col l4 offset-l4 botones-formulario">

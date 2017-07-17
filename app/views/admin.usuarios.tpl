@@ -161,7 +161,7 @@
 
 	<div class="row">
 		
-		<div class="col s11 offset-s1 m5 offset-m7 filtros-tabla"><span ng-click="adminUsuarios.activo = 'all'" ng-class="{active: adminUsuarios.activo == 'all'}">Ver todos ({{adminUsuarios.registros.length}})</span> <span ng-click="adminUsuarios.activo = 1" ng-class="{active: adminUsuarios.activo == 1}">Ver activos ({{adminUsuarios.registrosActivos()}})</span> <span ng-click="adminUsuarios.activo = 0" ng-class="{active: adminUsuarios.activo == null}">Ver inactivos ({{adminUsuarios.registrosInactivos()}})</span></div>
+		<div class="col s11 offset-s1 m5 offset-m7 filtros-tabla"><span ng-click="adminUsuarios.activo = 'all'; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == 'all'}">Ver todos ({{adminUsuarios.registros.length}})</span> <span ng-click="adminUsuarios.activo = 1; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == 1}">Ver activos ({{adminUsuarios.registrosActivos()}})</span> <span ng-click="adminUsuarios.activo = 0; adminUsuarios.saltoUsuarios = 0" ng-class="{active: adminUsuarios.activo == null}">Ver inactivos ({{adminUsuarios.registrosInactivos()}})</span></div>
 
 	</div>
 
@@ -186,7 +186,7 @@
 				</thead>
 				<tbody>
 
-					<tr ng-repeat-start="registro in usuariosFiltrados = ( adminUsuarios.registros | filter:(adminUsuarios.activo === 'all' ? undefined : { activo: adminUsuarios.activo }) ) | orderBy:adminUsuarios.ordenPor:adminUsuarios.ordenRevertido">
+					<tr ng-repeat-start="registro in usuariosFiltrados = ( adminUsuarios.registros | filter:(adminUsuarios.activo === 'all' ? undefined : { activo: adminUsuarios.activo }) ) | orderBy:adminUsuarios.ordenPor:adminUsuarios.ordenRevertido | limitTo: 10 : adminUsuarios.saltoUsuarios">
 						<td class="usuario" rowspan="{{registro.mascotas.length}}" ui-sref="admin.usuariosIndividual({idUsuario: registro.idusuario})" style="cursor: pointer;"> {{ registro.usuario }} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.telefono }} </td>
 						<td rowspan="{{registro.mascotas.length}}"> {{ registro.emailU }} </td>
@@ -231,6 +231,14 @@
 
 	</div>
 
+	<div class="row">
+		
+		<div class="col s11 offset-s1 m10 offset-m1 flechas">
+			<p class="flecha" id="izq" ng-click="adminUsuarios.avanzar(adminUsuarios.saltoUsuarios, false, (usuariosFiltrados | limitTo: 10 : adminUsuarios.saltoUsuarios - 10).length)" style="cursor: pointer;"><</p> <p class="flecha" id="der" ng-click="adminUsuarios.avanzar(adminUsuarios.saltoUsuarios, true, (usuariosFiltrados | limitTo: 10 : adminUsuarios.saltoUsuarios + 10).length)" style="cursor: pointer;">></p>
+		</div>
+
+	</div>
+	
 	<div class="row">
     	<div class="col s6 offset-s3 col m6 offset-m3 col l4 offset-l4 botones-formulario">
             <div class="row">

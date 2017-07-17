@@ -54,6 +54,8 @@ angular.module("mascotas")
 
 	cdx.seleccionado = function(sel) {
 
+		cdx.saltoPlacas = 0;
+
 		if (sel == 'all') {
 
 			cdx.activo = 'all'; 
@@ -77,5 +79,35 @@ angular.module("mascotas")
 		}
 
 	} 
+
+
+
+	cdx.saltoPlacas = 0;
+
+
+	cdx.avanzar = function(salto, accion, cantidad){
+
+		
+
+
+
+		if(cantidad > 0){
+
+			if(accion){
+
+				cdx.saltoPlacas = salto + 10;
+
+			} else{
+				if(salto > 0){
+					cdx.saltoPlacas = salto - 10;
+
+				}
+				
+
+			}	
+
+		}
+
+	}
 
 }])

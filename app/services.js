@@ -1980,29 +1980,16 @@ angular.module("mascotas")
 
     this.exportar = function (datos) {
 
-        var i = true;
 
-        var html = datos;
-
-        while (i) {
-
-            html = html.replace('src="a', 'src="https://www.dinbeat.com/qr/a')
-
-
-            if(html.search('src="a') == -1){
-                i = false;
-            }
-        }
-        
         var defered = $q.defer();
         var promise = defered.promise;
 
-        $http.post(apiRootFactory + "admin/exportar-registros", {datos: html})
-            
+        $http.post(apiRootFactory + "admin/excel-busqueda", {datos: datos})
+
        .then(function (res) {
 
-            $window.open(apiRootFactory  + res.data)
-            defered.resolve(res.data);
+            $window.open(apiRootFactory  + 'excel/' + res.data.archivo)
+            defered.resolve();
 
         })
 
