@@ -78,7 +78,7 @@ angular.module("mascotas")
 
 	}
 
-cdx.saltoUsuarios = 0;
+	cdx.saltoUsuarios = 0;
 
 
 	cdx.avanzar = function(salto, accion, cantidad){

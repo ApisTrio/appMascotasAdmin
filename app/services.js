@@ -2022,6 +2022,31 @@ angular.module("mascotas")
 
     }
 
+    this.exportarPlacas = function (datos) {
+
+
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http.post(apiRootFactory + "admin/excel-placas", {datos: datos})
+
+       .then(function (res) {
+
+            $window.open(apiRootFactory  + 'excel/' + res.data.archivo)
+            defered.resolve();
+
+        })
+
+        .catch(function (res) {
+
+            defered.reject(res.data.message);
+
+        })
+
+        return promise;
+        
+    }
+
     this.salir = function () {
 
         $rootScope.objetoToken = false;

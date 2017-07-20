@@ -83,6 +83,30 @@ angular.module("mascotas")
 
 
 
+	cdx.exportarFin = true;
+
+	cdx.exportar = function() {
+
+		if(cdx.exportarFin){ 
+
+			cdx.exportarFin = false;
+
+			adminService.exportarPlacas($scope.placasFiltradas)
+
+		    .then(function (res) {
+
+		    	cdx.exportarFin = true;
+		    
+		    })
+
+		}
+
+	
+
+	}
+
+
+
 	cdx.saltoPlacas = 0;
 
 
