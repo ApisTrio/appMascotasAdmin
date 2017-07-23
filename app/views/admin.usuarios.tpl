@@ -187,6 +187,7 @@
 						<th>C.P <img ng-click="adminUsuarios.ordenPor = 'codigo_postal'; adminUsuarios.ordenRevertido = !adminUsuarios.ordenRevertido" src="assets/images/icons/orden_lista.png"></th>						
 						<th>Mascota <img ng-click="adminUsuarios.ordenPor = 'nombre'; adminUsuarios.ordenRevertido = !adminUsuarios.ordenRevertido" src="assets/images/icons/orden_lista.png"></th>
 						<th>ID <img ng-click="adminUsuarios.ordenPor = 'codigo'; adminUsuarios.ordenRevertido = !adminUsuarios.ordenRevertido" src="assets/images/icons/orden_lista.png"></th>
+						<th>Fecha <img ng-click="adminUsuarios.ordenPor = 'fecha_nacimiento'; adminUsuarios.ordenRevertido = !adminUsuarios.ordenRevertido" src="assets/images/icons/orden_lista.png"></th>
 						<th>Modelos</th>
 						<th>Especie <img ng-click="adminUsuarios.ordenPor = 'especie'; adminUsuarios.ordenRevertido = !adminUsuarios.ordenRevertido" src="assets/images/icons/orden_lista.png"></th>
 						<th>Raza <img ng-click="adminUsuarios.ordenPor = 'raza'; adminUsuarios.ordenRevertido = !adminUsuarios.ordenRevertido" src="assets/images/icons/orden_lista.png"></th>
@@ -206,26 +207,36 @@
 						<td ng-if="registro.mascotas.length">
 							<span ng-repeat-start="placas in registro.mascotas[0].placas"> {{placas.codigo}} </span> <br ng-repeat-end> 
 						</td>
+						<td ng-if="registro.mascotas.length"> 
+							<span ng-repeat-start="placas in registro.mascotas[0].placas" style="margin-bottom: 10px;"> {{placas.creado}} </span> <br ng-repeat-end> 
+						</td>
 						<td ng-if="registro.mascotas.length" style="text-align: center;"> 
 							<img ng-repeat-start="placa in registro.mascotas[0].placas" src="assets/images/placas/{{placa.forma}}/{{placa.modelo}}" width="40"> <br ng-repeat-end> 
 						</td>
 						<td ng-if="registro.mascotas.length"> {{registro.mascotas[0].especie}} </td>
 						<td ng-if="registro.mascotas.length"> {{registro.mascotas[0].raza}} </td>
-						<td ng-if="registro.mascotas.length"> {{registro.mascotas[0].fecha_nacimiento}} </td>
+						<td ng-if="registro.mascotas.length"> 
+							<span ng-repeat-start="placas in registro.mascotas[0].placas"> {{placas.creado}} </span> <br ng-repeat-end> 
+						</td>
 
 						<td ng-if="!registro.mascotas.length" colspan="6" style="text-align: center;"> No se encontraron mascotas asociadas</td>						
 					</tr>
-					<tr ng-if="registro.mascotas.length" ng-repeat-end ng-repeat="mascota in registro.mascotas.slice(1)">
+					<tr ng-if="registro.mascotas.length" ng-repeat-end ng-repeat="mascota in registro.mascotas | limitTo: registro.mascotas.length: 1">
 						<td class="usuario" style="cursor: pointer;" ui-sref="admin.mascota({idPlaca: mascota.placas[0].codigo})"> {{ mascota.nombre }} </td>
 						<td>
 							<span ng-repeat-start="placas in mascota.placas"> {{placas.codigo}} </span> <br ng-repeat-end> 
+						</td>
+						<td>
+							<span ng-repeat-start="placas in mascota.placas" style="margin-bottom: 10px;"> {{placas.creado}} </span> <br ng-repeat-end> 
 						</td>
 						<td style="text-align: center;">
 							<img ng-repeat-start="placa in mascota.placas" src="assets/images/placas/{{placa.forma}}/{{placa.modelo}}" width="40"> <br ng-repeat-end>
 						</td>
 						<td> {{mascota.especie}} </td>
 						<td> {{mascota.raza}} </td>
-						<td> {{mascota.fecha_nacimiento}} </td>	
+						<td>
+							<span ng-repeat-start="placas in mascota.placas" style="margin-bottom: 10px;"> {{placas.creado}} </span> <br ng-repeat-end> 
+						</td>
 					</tr>
 
 					<tr ng-if="!adminUsuarios.registros.length">
