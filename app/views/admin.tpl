@@ -40,7 +40,7 @@
                     <img ng-src="{{ iconoPlacas }}" ng-mouseover="iconoPlacas = iconosPlacas[1]" ng-mouseleave="iconoPlacas = cambiarIcono(seleccionado, 3, iconosPlacas)">
                 </div>
                 <div class="label-menu" ng-class="{'selected-menu-item' : seleccionado == 3}">
-                    Placas
+                    Listar placas
                 </div>
             </div>
             
@@ -49,7 +49,7 @@
                     <img ng-src="{{ iconoDesvincular }}" ng-mouseover="iconosDesvincular = iconosDesvincular[1]" ng-mouseleave="iconosDesvincular = cambiarIcono(seleccionado, 4, iconosDesvincular)">
                 </div>
                 <div class="label-menu" ng-class="{'selected-menu-item' : seleccionado == 4}">
-                    Placas
+                    Liberar placas
                 </div>
             </div>
             
