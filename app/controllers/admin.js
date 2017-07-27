@@ -17,15 +17,15 @@ angular.module("mascotas")
         "assets/images/menu-admin-iconos/generar_selected.svg"
     ];  
     $scope.iconosPlacas = [
-        "assets/images/menu-admin-iconos/generar.svg",
-        "assets/images/menu-admin-iconos/generar_hover.svg",
-        "assets/images/menu-admin-iconos/generar_selected.svg"
+        "assets/images/menu-admin-iconos/listar.svg",
+        "assets/images/menu-admin-iconos/listar_hover.svg",
+        "assets/images/menu-admin-iconos/listar_selected.svg"
     ];
     
      $scope.iconosDesvincular = [
-        "assets/images/menu-admin-iconos/generar.svg",
-        "assets/images/menu-admin-iconos/generar_hover.svg",
-        "assets/images/menu-admin-iconos/generar_selected.svg"
+        "assets/images/menu-admin-iconos/liberar.svg",
+        "assets/images/menu-admin-iconos/liberar_hover.svg",
+        "assets/images/menu-admin-iconos/liberar_selected.svg"
     ];
 
     $scope.cambiarIcono = function(s, i, iconos){
