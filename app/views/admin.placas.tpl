@@ -57,7 +57,21 @@
 	<div class="row">
 		
 		<div class="col s11 offset-s1 m10 offset-m1 flechas">
-			<p class="flecha" id="izq" ng-click="adminPlacas.avanzar(adminPlacas.saltoPlacas, false, (placasFiltradas | limitTo: 10 : adminPlacas.saltoPlacas - 10).length)" style="cursor: pointer"><</p> <p class="flecha" id="der" ng-click="adminPlacas.avanzar(adminPlacas.saltoPlacas, true, (placasFiltradas | limitTo: 10 : adminPlacas.saltoPlacas + 10).length)" style="cursor: pointer">></p>
+			<p class="flecha" id="izq" ng-click="adminPlacas.avanzar(adminPlacas.saltoPlacas, false, (placasFiltradas | limitTo: 10 : adminPlacas.saltoPlacas - 10).length)" ng-class="{'bloqueado': ((adminPlacas.saltoPlacas + 10 )/ 10) == 1}" style="cursor: pointer"><</p>
+            
+                
+            <div ng-class="{'actual' : ((adminPlacas.saltoPlacas + 10 )/ 10) == 1}" ng-click="adminPlacas.saltoPlacas = 0" style="cursor: pointer;display:inline-block">1</div>
+            
+            <div style="display:inline-block;" ng-if="adminPlacas.mostrarSuspenso(((adminPlacas.saltoPlacas + 10 )/ 10), adminPlacas.rango(placasFiltradas.length), 'izquierda')">...</div>
+            
+            <div ng-repeat="pagina in adminPlacas.rango(placasFiltradas.length) | limitTo: adminPlacas.rango(placasFiltradas.length).length - 2 : 1 " style="display:inline-block; margin-left: 5px; margin-right: 5px; cursor: pointer;" ng-class="{'actual' : ((adminPlacas.saltoPlacas + 10 )/ 10) == pagina}" ng-if="adminPlacas.paginacion(((adminPlacas.saltoPlacas + 10 )/ 10), pagina)" ng-click="adminPlacas.saltoPlacas = (pagina * 10) - 10">{{pagina}}</div>
+            
+            <div style="display:inline-block;" ng-if="adminPlacas.mostrarSuspenso(((adminPlacas.saltoPlacas + 10 )/ 10), adminPlacas.rango(placasFiltradas.length), 'derecha')">...</div>
+            
+            <div style="cursor:pointer;display:inline-block" ng-class="{'actual': !(placasFiltradas | limitTo: 10 : adminPlacas.saltoPlacas + 10).length}" ng-click="adminPlacas.saltoPlacas = (adminPlacas.rango(placasFiltradas.length).length * 10) - 10"> {{adminPlacas.rango(placasFiltradas.length).length}}</div>    
+                
+            
+            <p class="flecha" id="der" ng-click="adminPlacas.avanzar(adminPlacas.saltoPlacas, true, (placasFiltradas | limitTo: 10 : adminPlacas.saltoPlacas + 10).length)" ng-class="{'bloqueado': !(placasFiltradas | limitTo: 10 : adminPlacas.saltoPlacas + 10).length}" style="cursor: pointer">></p>
 		</div>
 
 	</div>

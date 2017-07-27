@@ -134,5 +134,106 @@ angular.module("mascotas")
 		}
 
 	}
+    
+    
+    
+    cdx.rango = function (total) {
+
+        //total = 101;
+
+        var numeracion = [];
+
+        var rango = isFinite(total / 10) ? total / 10 : 1;
+
+        for (i = 0; i < rango; i++) {
+
+            numeracion.push(i + 1);
+
+        }
+
+        return numeracion;
+
+    }
+
+
+    cdx.paginacion = function (paginaActiva, paginaActual) {
+
+
+        if (paginaActiva > paginaActual) {
+
+            if ((paginaActiva - paginaActual) <= 2) {
+
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+
+        } else if (paginaActual > paginaActiva) {
+
+            if ((paginaActual - paginaActiva) <= 2) {
+
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+
+        } else {
+
+            return true;
+
+        }
+
+
+    }
+
+
+    cdx.mostrarSuspenso = function (activa, paginas, posicion) {
+
+        var respuesta = false;
+        
+        if (posicion == "izquierda") {
+           
+            angular.forEach(paginas, function (valor, llave) {
+                
+                if (valor <= activa) {
+                    
+                    if (!((activa - valor) <= 3)) {
+
+                        respuesta = true;
+
+                    }
+
+                }
+
+            })
+
+        } else if (posicion == "derecha") {
+
+            angular.forEach(paginas, function (valor, llave) {
+
+                if (activa <= valor) {
+
+                    if (!((valor - activa) <= 3)) {
+                       
+                        respuesta = true;
+
+                    }
+
+                }
+
+            })
+
+        }
+        
+        
+        return respuesta;
+
+    }
 
 }])
