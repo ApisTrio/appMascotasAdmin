@@ -260,11 +260,11 @@
             
             <div style="display:inline-block;" ng-if="adminUsuarios.mostrarSuspenso(((adminUsuarios.saltoUsuarios + 10 )/ 10), adminUsuarios.rango(usuariosFiltrados.length), 'izquierda')">...</div>
             
-            <div ng-repeat="pagina in adminUsuarios.rango(usuariosFiltrados.length) | limitTo: adminUsuarios.rango(usuariosFiltrados.length).length - 2 : 1 " style="display:inline-block; margin-left: 5px; margin-right: 5px; cursor: pointer;" ng-class="{'actual' : ((adminUsuarios.saltoUsuarios + 10 )/ 10) == pagina}" ng-if="adminUsuarios.paginacion(((adminUsuarios.saltoUsuarios + 10 )/ 10), pagina)" ng-click="adminUsuarios.saltoUsuarios = (pagina * 10) - 10">{{pagina}}</div>
+            <div ng-repeat="pagina in adminUsuarios.rango(usuariosFiltrados.length) | limitTo: adminUsuarios.rango(usuariosFiltrados.length).length - 2 : 1 " style="display:inline-block; margin-left: 5px; margin-right: 5px; cursor: pointer;" ng-class="{'actual' : ((adminUsuarios.saltoUsuarios + 10 )/ 10) == pagina}" ng-if="adminUsuarios.paginacion(((adminUsuarios.saltoUsuarios + 10 )/ 10), pagina) && adminUsuarios.rango(usuariosFiltrados.length).length > 1" ng-click="adminUsuarios.saltoUsuarios = (pagina * 10) - 10">{{pagina}}</div>
             
             <div style="display:inline-block;" ng-if="adminUsuarios.mostrarSuspenso(((adminUsuarios.saltoUsuarios + 10 )/ 10), adminUsuarios.rango(usuariosFiltrados.length), 'derecha')">...</div>
             
-            <div style="cursor:pointer;display:inline-block" ng-class="{'actual': !(usuariosFiltrados | limitTo: 10 : adminUsuarios.saltoUsuarios + 10).length}" ng-click="adminUsuarios.saltoUsuarios = (adminUsuarios.rango(usuariosFiltrados.length).length * 10) - 10"> {{adminUsuarios.rango(usuariosFiltrados.length).length}}</div>
+            <div style="cursor:pointer;display:inline-block" ng-class="{'actual': !(usuariosFiltrados | limitTo: 10 : adminUsuarios.saltoUsuarios + 10).length}" ng-click="adminUsuarios.saltoUsuarios = (adminUsuarios.rango(usuariosFiltrados.length).length * 10) - 10" ng-if="adminUsuarios.rango(usuariosFiltrados.length).length > 1"> {{adminUsuarios.rango(usuariosFiltrados.length).length}}</div>
             
             <p class="flecha" id="der" ng-click="adminUsuarios.avanzar(adminUsuarios.saltoUsuarios, true, (usuariosFiltrados | limitTo: 10 : adminUsuarios.saltoUsuarios + 10).length)" ng-class="{'bloqueado': !(usuariosFiltrados | limitTo: 10 : adminUsuarios.saltoUsuarios + 10).length}" style="cursor: pointer;">></p>
 		</div>

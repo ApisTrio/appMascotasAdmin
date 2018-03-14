@@ -206,7 +206,6 @@ angular.module("mascotas")
 
         }
         
-        
         return respuesta;
 
     }
